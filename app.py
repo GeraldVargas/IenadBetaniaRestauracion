@@ -805,7 +805,7 @@ if st.session_state.page == 'Inicio':
     
     with c_img:
         try:
-            st.image("logoIglesia.jpeg", use_container_width=True)
+            st.image("LogoIglesia.jpeg", use_container_width=True)
         except:
             st.markdown("""
             <div style="background: linear-gradient(135deg, #1E3A8A 0%, #D4AF37 100%); 
@@ -2231,7 +2231,7 @@ elif st.session_state.page == 'Contactos':
     try:
         col_l1, col_l2, col_l3 = st.columns([1, 1.2, 1])
         with col_l2:
-            st.image("logoIglesia.jpeg", use_container_width=True)
+            st.image("LogoIglesia.jpeg", use_container_width=True)
     except:
         pass
     
@@ -2346,7 +2346,7 @@ elif st.session_state.page == 'pagina_creemos':
 
     with col_der:
         try:
-            st.image("logoIglesia.jpeg", use_container_width=True)
+            st.image("LogoIglesia.jpeg", use_container_width=True)
         except:
             st.info("IENAD Betania")
 
@@ -2423,7 +2423,7 @@ elif st.session_state.page == 'pagina_acerca':
 
     with col_der:
         try:
-            st.image("logoIglesia.jpeg", use_container_width=True)
+            st.image("LogoIglesia.jpeg", use_container_width=True)
         except:
             st.info("IENAD Betania")
 
