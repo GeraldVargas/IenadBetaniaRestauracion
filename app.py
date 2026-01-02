@@ -2271,7 +2271,7 @@ elif st.session_state.page == 'Contactos':
         </div>
     </div>
     """
-    components.html(grupo_html, height=200)
+    components.html(grupo_html, height=350) 
     
     # Contacto de emergencia
     st.markdown("<br><br>", unsafe_allow_html=True)
