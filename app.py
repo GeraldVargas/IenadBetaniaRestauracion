@@ -685,7 +685,7 @@ if st.session_state.page == 'Inicio':
     
     with c_img:
         try:
-            st.image("logoIglesia.jpeg", use_container_width=True)
+            st.image("LogoIglesia.jpeg", use_container_width=True)
         except:
             st.markdown("""
             <div style="background: linear-gradient(135deg, #1E3A8A 0%, #D4AF37 100%); 
