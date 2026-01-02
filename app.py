@@ -462,27 +462,20 @@ def load_verse_of_day():
     return verses[day_of_year % len(verses)]
 
 # ============================================================================
-# 4. GESTIÓN DE NAVEGACIÓN Y ESTADO DE LA APLICACIÓN - VERSIÓN CORREGIDA
+# 4. GESTIÓN DE NAVEGACIÓN Y ESTADO DE LA APLICACIÓN
 # ============================================================================
 
-# Usamos query parameters para que funcione el botón "atrás"
-if "page" not in st.query_params:
-    st.query_params["page"] = "Inicio"
-
-# Sincronizamos con session_state
-if "page" in st.query_params:
-    st.session_state.page = st.query_params["page"]
+if 'page' not in st.session_state:
+    st.session_state.page = 'Inicio'
 
 if 'prayer_count' not in st.session_state:
     st.session_state.prayer_count = 0
 
 def set_page(name):
     st.session_state.page = name
-    st.query_params["page"] = name  # <-- ESTA LÍNEA NUEVA ES CLAVE
-    scroll_to_top()
 
 # ============================================================================
-# 5. SIDEBAR REDISEÑADO (EXACTAMENTE IGUAL, NO CAMBIES NADA)
+# 5. SIDEBAR REDISEÑADO
 # ============================================================================
 
 with st.sidebar:
@@ -500,6 +493,7 @@ with st.sidebar:
     st.markdown("<hr style='border-color: #334155;'>", unsafe_allow_html=True)
     
     # Contador de próxima reunión
+       # Contador de próxima reunión
     next_service = calculate_time_until_next_service()
     if next_service:
         days_word = "Hoy" if next_service['is_today'] else "Próximo"
@@ -525,6 +519,10 @@ with st.sidebar:
         for eng, esp in dias_semana_es.items():
             fecha_espanol = fecha_espanol.replace(eng, esp)
         
+        # Si necesitas traducir meses también (por si acaso)
+        # for eng, esp in meses_es.items():
+        #     fecha_espanol = fecha_espanol.replace(eng, esp)
+        
         st.markdown(f"""
             <div style="background: rgba(30, 58, 138, 0.2); padding: 15px; border-radius: 10px; margin-bottom: 20px;">
                 <p style="color: #D4AF37; font-size: 0.9rem; margin: 0; font-weight: bold;">
@@ -536,10 +534,10 @@ with st.sidebar:
             </div>
         """, unsafe_allow_html=True)
     
-    # Navegación principal (NO CAMBIES NADA AQUÍ)
+    # Navegación principal
     st.button(" Inicio", on_click=set_page, args=('Inicio',))
     st.button(" Horarios de Culto", on_click=set_page, args=('Horarios',))
-    st.button(" Anuncios", on_click=set_page, args=('Anuncios',))
+    st.button(" Anuncios", on_click=set_page, args=('Anuncios',))  # NUEVO
     st.button(" Nuestra Ubicación", on_click=set_page, args=('Ubicacion',))
     st.button(" Redes Sociales", on_click=set_page, args=('Redes',))
     st.button(" Petición de Oración", on_click=set_page, args=('Oracion',))
@@ -547,8 +545,10 @@ with st.sidebar:
     
     # Información adicional en sidebar
     st.markdown("<br><br>", unsafe_allow_html=True)
+    
+    
+    
     st.info("¡Te esperamos con los brazos abiertos!")
-
 
 # ============================================================================
 # 6. LÓGICA DE CONTENIDO POR PÁGINA
@@ -805,7 +805,7 @@ if st.session_state.page == 'Inicio':
     
     with c_img:
         try:
-            st.image("LogoIglesia.jpeg", use_container_width=True)
+            st.image("logoIglesia.jpeg", use_container_width=True)
         except:
             st.markdown("""
             <div style="background: linear-gradient(135deg, #1E3A8A 0%, #D4AF37 100%); 
@@ -2231,7 +2231,7 @@ elif st.session_state.page == 'Contactos':
     try:
         col_l1, col_l2, col_l3 = st.columns([1, 1.2, 1])
         with col_l2:
-            st.image("LogoIglesia.jpeg", use_container_width=True)
+            st.image("logoIglesia.jpeg", use_container_width=True)
     except:
         pass
     
@@ -2345,7 +2345,7 @@ elif st.session_state.page == 'pagina_creemos':
 
     with col_der:
         try:
-            st.image("LogoIglesia.jpeg", use_container_width=True)
+            st.image("logoIglesia.jpeg", use_container_width=True)
         except:
             st.info("IENAD Betania")
 
@@ -2422,7 +2422,7 @@ elif st.session_state.page == 'pagina_acerca':
 
     with col_der:
         try:
-            st.image("LogoIglesia.jpeg", use_container_width=True)
+            st.image("logoIglesia.jpeg", use_container_width=True)
         except:
             st.info("IENAD Betania")
 
