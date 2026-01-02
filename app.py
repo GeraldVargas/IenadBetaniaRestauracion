@@ -364,7 +364,7 @@ with st.sidebar:
     
     # Logo de la iglesia
     try:
-        st.image("logoIglesia.jpeg", use_container_width=True)
+        st.image("LogoIglesia.jpeg", use_container_width=True)
     except:
         st.markdown("<h1 style='color:var(--secondary); text-align:center;'>✝️</h1>", unsafe_allow_html=True)
     
