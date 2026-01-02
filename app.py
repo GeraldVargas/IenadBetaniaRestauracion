@@ -2111,7 +2111,7 @@ elif st.session_state.page == 'Contactos':
     try:
         col_l1, col_l2, col_l3 = st.columns([1, 1.2, 1])
         with col_l2:
-            st.image("logoIglesia.jpeg", use_container_width=True)
+            st.image("LogoIglesia.jpeg", use_container_width=True)
     except:
         pass
     
