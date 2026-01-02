@@ -8,44 +8,33 @@ import streamlit.components.v1 as components
 import json
 import os
 import urllib.parse
-
 def scroll_to_top():
-    components.html(
-        """
-        <script>
-        const waitForApp = () => {
-            const app = window.parent.document.querySelector(
-                'div[data-testid="stAppViewContainer"]'
-            );
-
-            if (!app) {
-                setTimeout(waitForApp, 50);
-                return;
-            }
-
-            const observer = new MutationObserver(() => {
-                app.scrollTop = 0;
-            });
-
-            observer.observe(app, {
-                childList: true,
-                subtree: true
-            });
-
-            // primer intento inmediato
-            app.scrollTop = 0;
-
-            // refuerzo
-            setTimeout(() => {
-                app.scrollTop = 0;
-            }, 100);
-        };
-
-        waitForApp();
-        </script>
-        """,
-        height=0,
-    )
+    """Versión mejorada que funciona en móvil y desktop"""
+    scroll_js = """
+    <script>
+    // Función que funciona en todos los dispositivos
+    function scrollAll() {
+        // Para desktop (Streamlit container)
+        const container = document.querySelector('[data-testid="stAppViewContainer"]');
+        if (container) {
+            container.scrollTop = 0;
+        }
+        
+        // Para móvil (window)
+        window.scrollTo(0, 0);
+        
+        // Para body y html
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    
+    // Ejecutar inmediatamente y después de un delay
+    scrollAll();
+    setTimeout(scrollAll, 100);
+    setTimeout(scrollAll, 500);
+    </script>
+    """
+    components.html(scroll_js, height=0)
 
 
 # ============================================================================
@@ -78,6 +67,13 @@ st.markdown("""
         --light: #ffffff;
     }
 
+    /* Viewport para móvil */
+    @viewport {
+        width: device-width;
+        initial-scale: 1.0;
+    }
+
+    /* 3. ESTILOS BASE */
     section.main > div {
         max-width: 100% !important;
         padding-left: 0 !important;
@@ -92,18 +88,17 @@ st.markdown("""
         background-color: var(--light);
     }
 
-    /* 3. TIPOGRAFÍAS (CORREGIDO PARA NO ROMPER ICONOS) */
+    /* 4. TIPOGRAFÍAS */
     h1, h2, h3 {
         font-family: 'Playfair Display', serif !important;
         font-weight: 900 !important;
     }
     
-    /* Aplicamos Montserrat solo a textos reales, no a contenedores de iconos */
     .stApp p, .stApp label, .stApp li, .stApp .stButton button, .stApp span:not([data-testid="stIconMaterial"]) {
         font-family: 'Montserrat', sans-serif !important;
     }
 
-    /* 4. HEADER (AZUL DARK Y BORDE DORADO) */
+    /* 5. HEADER */
     header[data-testid="stHeader"] {
         background-color: var(--dark) !important;
         border-bottom: 1px solid rgba(212, 175, 55, 0.3) !important;
@@ -111,19 +106,18 @@ st.markdown("""
         z-index: 999 !important;
     }
 
-    /* 5. SIDEBAR PREMIUM */
+    /* 6. SIDEBAR */
     [data-testid="stSidebar"] {
         background: linear-gradient(180deg, var(--dark) 0%, #1e293b 100%) !important;
         border-right: 1px solid var(--secondary);
     }
     
-    /* Texto normal en el sidebar */
     .stSidebar [data-testid="stMarkdownContainer"] p {
         color: #cbd5e1;
         font-family: 'Montserrat', sans-serif;
     }
 
-    /* EFECTO DORADO EN NOMBRES DE PÁGINAS (HOVER) */
+    /* 7. NAVEGACIÓN */
     [data-testid="stSidebarNav"] li:hover span {
         color: var(--secondary) !important;
         font-weight: 600 !important;
@@ -135,7 +129,7 @@ st.markdown("""
         transition: all 0.3s ease !important;
     }
 
-    /* 6. ELIMINAR TEXTO "KEYBOARD DOUBLE..." Y PONER FLECHA DORADA */
+    /* 8. BOTÓN COLAPSADO */
     button[data-testid="collapsedControl"] {
         position: relative !important;
         background-color: rgba(255, 255, 255, 0.05) !important;
@@ -144,17 +138,17 @@ st.markdown("""
         height: 40px !important;
         overflow: hidden !important;
         color: transparent !important;
-        text-indent: -9999px !important; /* Manda el texto al infinito */
+        text-indent: -9999px !important;
         margin-top: 8px !important;
         margin-left: 10px !important;
     }
 
     button[data-testid="collapsedControl"] * {
-        display: none !important; /* Oculta cualquier span o svg interno */
+        display: none !important;
     }
 
     button[data-testid="collapsedControl"]::after {
-        content: "〉" !important; /* Flecha simple */
+        content: "〉" !important;
         position: absolute !important;
         top: 50% !important;
         left: 50% !important;
@@ -162,12 +156,12 @@ st.markdown("""
         font-size: 20px !important;
         color: var(--secondary) !important;
         font-family: Arial, sans-serif !important;
-        text-indent: 0 !important; /* Trae la flecha al centro */
+        text-indent: 0 !important;
         visibility: visible !important;
         font-weight: bold !important;
     }
 
-    /* 7. COMPONENTES DE DISEÑO (CARDS, HERO, BUTTONS) */
+    /* 9. COMPONENTES */
     .hero-section {
         background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), 
                     url('https://images.unsplash.com/photo-1438232992991-995b7058bbb3?q=80&w=2000');
@@ -212,7 +206,7 @@ st.markdown("""
         background: rgba(212, 175, 55, 0.1) !important;
     }
 
-    /* 8. FOOTER Y OTROS */
+    /* 10. FOOTER */
     .custom-footer {
         background: var(--dark);
         color: white;
@@ -227,42 +221,167 @@ st.markdown("""
         color: white !important;
         border: none !important;
     }
-            /* ======================================
-    HEADER CAMUFLADO (PLOMO OSCURO)
-    ====================================== */
 
-    /* Header principal */
+    /* ======================================
+       HEADER CAMUFLADO
+    ====================================== */
     header[data-testid="stHeader"] {
-        background: #071840 !important;   /* plomo oscuro */
+        background: #071840 !important;
         box-shadow: none !important;
         border-bottom: 1px solid #334155 !important;
     }
 
-    /* Ocultar SOLO el texto/icono roto */
     header [data-testid="collapsedControl"] span,
     header [data-testid="collapsedControl"] i {
         display: none !important;
     }
 
-    /* Evita que el texto fallback se muestre */
     header [data-testid="collapsedControl"] {
         font-size: 0 !important;
         width: 36px;
     }
 
-    /* Ajustar botones del header (Deploy, ⋮) */
     header button {
         color: #CBD5E1 !important;
     }
 
-    /* Hover sutil */
     header button:hover {
         background: rgba(255,255,255,0.08) !important;
         border-radius: 8px;
     }
 
-    </style>
+    /* ======================================
+       MEDIA QUERIES PARA MÓVIL
+       ====================================== */
     
+    /* Para pantallas menores a 768px (tablets y móviles) */
+    @media (max-width: 768px) {
+        /* Títulos */
+        h1 {
+            font-size: 2rem !important;
+            line-height: 1.2 !important;
+        }
+        
+        h2 {
+            font-size: 1.6rem !important;
+        }
+        
+        h3 {
+            font-size: 1.4rem !important;
+        }
+        
+        /* Tarjetas */
+        .glass-card {
+            padding: 20px 15px !important;
+            margin-bottom: 15px !important;
+            border-radius: 15px !important;
+        }
+        
+        /* Hero section */
+        .hero-section {
+            padding: 40px 15px !important;
+            margin-bottom: 20px !important;
+            border-radius: 15px !important;
+        }
+        
+        /* Botones */
+        .stButton > button {
+            padding: 14px 16px !important;
+            font-size: 0.95rem !important;
+            margin: 5px 0 !important;
+        }
+        
+        /* Columnas en Streamlit */
+        [data-testid="column"] {
+            width: 100% !important;
+            margin-bottom: 15px !important;
+        }
+        
+        /* Sidebar más compacta */
+        [data-testid="stSidebar"] {
+            min-width: 240px !important;
+        }
+        
+        /* Textos */
+        p, span, label {
+            font-size: 0.95rem !important;
+            line-height: 1.4 !important;
+        }
+        
+        /* Imágenes */
+        img {
+            max-width: 100% !important;
+            height: auto !important;
+        }
+    }
+    
+    /* Para pantallas menores a 480px (móviles pequeños) */
+    @media (max-width: 480px) {
+        h1 {
+            font-size: 1.7rem !important;
+        }
+        
+        h2 {
+            font-size: 1.4rem !important;
+        }
+        
+        .glass-card {
+            padding: 15px 10px !important;
+        }
+        
+        .hero-section {
+            padding: 30px 10px !important;
+            height: auto !important;
+            min-height: 250px !important;
+        }
+        
+        .stButton > button {
+            padding: 12px 14px !important;
+            font-size: 0.9rem !important;
+            min-height: 44px !important;
+        }
+        
+        /* Mejorar táctil */
+        button, [role="button"], .stButton > button {
+            min-height: 44px !important;
+            min-width: 44px !important;
+        }
+    }
+
+    /* ======================================
+       ESTILOS ESPECÍFICOS PARA TU HERO SLIDESHOW
+       ====================================== */
+    @media (max-width: 768px) {
+        .hero-slideshow {
+            height: 300px !important;
+        }
+        
+        .hero-content h1 {
+            font-size: 1.8rem !important;
+            line-height: 1.1 !important;
+            margin-bottom: 10px !important;
+        }
+        
+        .hero-content span {
+            font-size: 1.3rem !important;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .hero-slideshow {
+            height: 250px !important;
+        }
+        
+        .hero-content h1 {
+            font-size: 1.5rem !important;
+        }
+        
+        .hero-content span {
+            font-size: 1.1rem !important;
+        }
+    }
+
+    </style>
 """, unsafe_allow_html=True)
 
 # ============================================================================
@@ -498,6 +617,7 @@ if st.session_state.page == 'Inicio':
     <html>
     <head>
         <style>
+        
         body, html {{
             margin: 0;
             padding: 0;
@@ -685,7 +805,7 @@ if st.session_state.page == 'Inicio':
     
     with c_img:
         try:
-            st.image("LogoIglesia.jpeg", use_container_width=True)
+            st.image("logoIglesia.jpeg", use_container_width=True)
         except:
             st.markdown("""
             <div style="background: linear-gradient(135deg, #1E3A8A 0%, #D4AF37 100%); 
@@ -2111,7 +2231,7 @@ elif st.session_state.page == 'Contactos':
     try:
         col_l1, col_l2, col_l3 = st.columns([1, 1.2, 1])
         with col_l2:
-            st.image("LogoIglesia.jpeg", use_container_width=True)
+            st.image("logoIglesia.jpeg", use_container_width=True)
     except:
         pass
     
@@ -2226,7 +2346,7 @@ elif st.session_state.page == 'pagina_creemos':
 
     with col_der:
         try:
-            st.image("LogoIglesia.jpeg", use_container_width=True)
+            st.image("logoIglesia.jpeg", use_container_width=True)
         except:
             st.info("IENAD Betania")
 
@@ -2303,7 +2423,7 @@ elif st.session_state.page == 'pagina_acerca':
 
     with col_der:
         try:
-            st.image("LogoIglesia.jpeg", use_container_width=True)
+            st.image("logoIglesia.jpeg", use_container_width=True)
         except:
             st.info("IENAD Betania")
 
