@@ -54,7 +54,7 @@ def scroll_to_top():
 
 st.set_page_config(
     page_title="IENAD-RESTAURACION",
-    page_icon=  "logoIglesia.jpeg" if os.path.exists("logoIglesia.jpeg") else "✝️",
+    page_icon=  "LogoIglesia.jpeg" if os.path.exists("LogoIglesia.jpeg") else "✝️",
     layout="wide",
     initial_sidebar_state="expanded",
 )
