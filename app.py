@@ -2226,7 +2226,7 @@ elif st.session_state.page == 'pagina_creemos':
 
     with col_der:
         try:
-            st.image("logoIglesia.jpeg", use_container_width=True)
+            st.image("LogoIglesia.jpeg", use_container_width=True)
         except:
             st.info("IENAD Betania")
 
@@ -2303,7 +2303,7 @@ elif st.session_state.page == 'pagina_acerca':
 
     with col_der:
         try:
-            st.image("logoIglesia.jpeg", use_container_width=True)
+            st.image("LogoIglesia.jpeg", use_container_width=True)
         except:
             st.info("IENAD Betania")
 
