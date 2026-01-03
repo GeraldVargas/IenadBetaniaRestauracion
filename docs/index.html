@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IENAD BETANIA RESTAURACIÓN - Iglesia Cristiana Cochabamba Bolivia</title>
+    
+    <!-- META TAGS PARA GOOGLE (IMPORTANTÍSIMOS) -->
+    <meta name="description" content="Iglesia IENAD BETANIA RESTAURACIÓN en Cochabamba. Cultos los sábados 6:30 PM y domingos 10:30 AM. Dirección: Calle Fortín Vanguardia #740. Comunidad cristiana de fe y restauración espiritual.">
+    <meta name="keywords" content="iglesia cochabamba, culto cristiano cochabamba, IENAD BETANIA, restauración iglesia, iglesia evangelica bolivia, horarios culto cochabamba, iglesia cristiana bolivia">
+    <meta name="author" content="IENAD BETANIA RESTAURACIÓN">
+    <meta name="robots" content="index, follow">
+    
+    <!-- OPEN GRAPH (para Facebook/WhatsApp) -->
+    <meta property="og:title" content="IENAD BETANIA RESTAURACIÓN - Iglesia en Cochabamba">
+    <meta property="og:description" content="Cultos: Sábado 6:30 PM, Domingo 10:30 AM. Dirección: Calle Fortín Vanguardia #740, Cochabamba">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://geraldvargas.github.io/IenadBetaniaRestauracion/">
+    
+    <style>
+        /* ESTILOS BÁSICOS - RESPONSIVE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: #f8f9fa;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        
+        /* HEADER */
+        .header {
+            background: linear-gradient(135deg, #1E3A8A 0%, #0F172A 100%);
+            color: white;
+            padding: 50px 30px;
+            text-align: center;
+            border-bottom: 5px solid #D4AF37;
+        }
+        
+        .header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            font-weight: 900;
+        }
+        
+        .header .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 25px;
+        }
+        
+        /* BOTÓN PRINCIPAL */
+        .main-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #D4AF37 0%, #b8941f 100%);
+            color: #1E3A8A;
+            text-decoration: none;
+            padding: 18px 45px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin: 15px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .main-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+        }
+        
+        /* CONTENIDO PRINCIPAL */
+        .content {
+            padding: 40px;
+        }
+        
+        .section-title {
+            color: #1E3A8A;
+            margin: 30px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #D4AF37;
+            font-size: 1.8rem;
+        }
+        
+        /* TARJETAS DE INFORMACIÓN */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .info-card {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 12px;
+            border-top: 4px solid #D4AF37;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .info-card h3 {
+            color: #1E3A8A;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .info-card p {
+            margin-bottom: 8px;
+            color: #4b5563;
+        }
+        
+        /* LISTA DE MINISTERIOS */
+        .ministries-list {
+            background: #f0f9ff;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border-left: 5px solid #1E3A8A;
+        }
+        
+        .ministries-list ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+        
+        .ministries-list li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .ministries-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #D4AF37;
+            font-weight: bold;
+        }
+        
+        /* FOOTER */
+        .footer {
+            background: #1E3A8A;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+            border-top: 3px solid #D4AF37;
+        }
+        
+        .footer a {
+            color: #D4AF37;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .content {
+                padding: 25px 20px;
+            }
+            
+            .main-button {
+                padding: 16px 35px;
+                font-size: 1.1rem;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 35px 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+    
+    <!-- GOOGLE VERIFICATION TAG (lo agregarás después) -->
+    <!-- <meta name="google-site-verification" content="TU-CODIGO-AQUI" -->
+</head>
+<body>
+    <div class="container">
+        <!-- ENCABEZADO PRINCIPAL -->
+        <header class="header">
+            <h1>IENAD BETANIA - RESTAURACIÓN</h1>
+            <p class="subtitle">Iglesia Cristiana en Cochabamba, Bolivia</p>
+            <p style="margin-bottom: 25px; font-size: 1.1rem; opacity: 0.9;">
+                "Una comunidad de fe, esperanza y amor"
+            </p>
+            
+            <!-- BOTÓN PARA LA APP STREAMLIT -->
+            <a href="https://ienadbetaniarestauracion.streamlit.app" class="main-button">
+                🚀 ACCEDER A LA APLICACIÓN COMPLETA
+            </a>
+            
+            <p style="margin-top: 15px; font-size: 0.95rem; opacity: 0.8;">
+                (Horarios actualizados, ubicación, redes sociales, petición de oración y más)
+            </p>
+        </header>
+        
+        <!-- CONTENIDO PRINCIPAL -->
+        <main class="content">
+            <!-- SECCIÓN 1: HORARIOS Y UBICACIÓN -->
+            <h2 class="section-title">📅 Nuestros Horarios y Ubicación</h2>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>⏰ Horarios de Culto</h3>
+                    <p><strong>Sábado:</strong> 6:30 PM - Culto de Restauración</p>
+                    <p><strong>Domingo:</strong> 10:30 AM - Culto Dominical</p>
+                    <p><strong>Ensayo de Música:</strong> Martes y Jueves 6:30 PM</p>
+                    <p><strong>Panderos y Danza:</strong> Viernes 6:30 PM</p>
+                    <p><em style="color: #666; font-size: 0.9rem;">¡Toda la familia es bienvenida!</em></p>
+                </div>
+                
+                <div class="info-card">
+                    <h3>📍 Nuestra Ubicación</h3>
+                    <p><strong>Dirección:</strong><br>
+                    Calle Fortín Vanguardia #740<br>
+                    Cochabamba, Bolivia</p>
+                    <p style="margin-top: 15px;">
+                        <a href="https://maps.google.com/?q=Calle+Fortín+Vanguardia+740+Cochabamba+Bolivia" 
+                           style="color: #1E3A8A; text-decoration: none; font-weight: bold;">
+                            🗺️ Ver en Google Maps
+                        </a>
+                    </p>
+                </div>
+                
+                <div class="info-card">
+                    <h3>📞 Contacto Directo</h3>
+                    <p><strong>Pastora Paula:</strong><br>+591 67435065</p>
+                    <p><strong>Pastor Boris:</strong><br>+591 77462108</p>
+                    <p style="margin-top: 15px;">
+                        <a href="https://wa.me/59167435065" style="color: #25D366; text-decoration: none;">
+                            💬 WhatsApp Directo
+                        </a>
+                    </p>
+                </div>
+            </div>
+            
+            <!-- SECCIÓN 2: SOBRE NOSOTROS -->
+            <h2 class="section-title">🙏 Sobre Nuestra Iglesia</h2>
+            
+            <div style="background: #f8fafc; padding: 25px; border-radius: 12px; margin: 20px 0;">
+                <p style="margin-bottom: 15px; font-size: 1.1rem;">
+                    La <strong>IENAD BETANIA - RESTAURACIÓN</strong> es una comunidad cristiana comprometida con la restauración integral de las personas a través del poder transformador del Evangelio de Jesucristo.
+                </p>
+                <p style="margin-bottom: 15px;">
+                    Somos parte de la familia IENAD BETANIA y tenemos como visión ser una iglesia de impacto en Cochabamba, donde cada persona encuentre esperanza, propósito y una familia espiritual.
+                </p>
+                <p>
+                    Nuestra misión es predicar el Evangelio, discipular a los creyentes y servir a nuestra comunidad con amor y compasión, reflejando el carácter de Cristo en todo lo que hacemos.
+                </p>
+            </div>
+            
+            <!-- SECCIÓN 3: MINISTERIOS -->
+            <h2 class="section-title">✨ Nuestros Ministerios</h2>
+            
+            <div class="ministries-list">
+                <ul>
+                    <li><strong>Ministerio de Alabanza:</strong> Equipo de música y adoración</li>
+                    <li><strong>Ministerio de Danza:</strong> Panderos y danza litúrgica</li>
+                    <li><strong>Ministerio de Niños:</strong> Escuela dominical y actividades</li>
+                    <li><strong>Grupo de Jóvenes:</strong> Encuentros y discipulado</li>
+                    <li><strong>Ministerio de Oración:</strong> Intercesión y consejería</li>
+                    <li><strong>Evangelismo:</strong> Alcance comunitario y misiones</li>
+                </ul>
+            </div>
+            
+            <!-- BOTÓN FINAL -->
+            <div style="text-align: center; margin: 50px 0 30px 0;">
+                <a href="https://ienadbetaniarestauracion.streamlit.app" class="main-button">
+                    ✨ DESCUBRE TODAS LAS FUNCIONES EN NUESTRA APP ✨
+                </a>
+                <p style="margin-top: 15px; color: #666; font-size: 0.95rem;">
+                    Redes sociales, anuncios semanales, petición de oración en línea, versículo del día y más
+                </p>
+            </div>
+        </main>
+        
+        <!-- PIE DE PÁGINA -->
+        <footer class="footer">
+            <p><strong>© 2024 IENAD BETANIA RESTAURACIÓN - Cochabamba, Bolivia</strong></p>
+            <p style="margin-top: 15px; opacity: 0.9;">
+                "Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito,
+                para que todo aquel que en él cree, no se pierda, mas tenga vida eterna."<br>
+                <em>- Juan 3:16</em>
+            </p>
+            <p style="margin-top: 20px; font-size: 0.9rem;">
+                <a href="https://geraldvargas.github.io/IenadBetaniaRestauracion/">Página Principal</a> | 
+                <a href="https://ienadbetaniarestauracion.streamlit.app">App Completa</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
