@@ -9,6 +9,59 @@ import json
 import os
 import urllib.parse
 
+hide_all_style = """
+<style>
+/* OCULTAR POR SELECTORES MÁS ESPECÍFICOS */
+[data-testid="stSidebarUserContent"] + div,
+div[class*="stAppDeploy"],
+div[class*="deployButton"],
+button[title*="Fork"],
+button[title*="Stop"],
+a[href*="streamlit"],
+img[src*="streamlit"],
+svg[data-testid*="streamlit"],
+footer > *,
+header > *,
+div[data-testid="stDecoration"],
+div[data-testid="stStatusWidget"],
+div[class*="stNotification"],
+div[class*="stToast"] {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    width: 0 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+* {
+    max-height: 100vh !important;
+}
+
+body:after {
+    content: "" !important;
+}
+
+[data-testid="stAppViewContainer"] {
+    pointer-events: auto !important;
+}
+
+/* AJUSTAR VIEWPORT */
+.stApp {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+</style>
+"""
+
+st.markdown(hide_all_style, unsafe_allow_html=True)
+
+
 def scroll_to_top():
     """móvil y desktop"""
     scroll_js = """
