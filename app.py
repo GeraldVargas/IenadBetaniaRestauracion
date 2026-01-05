@@ -9,26 +9,21 @@ import json
 import os
 import urllib.parse
 def scroll_to_top():
-    """Versión mejorada que funciona en móvil y desktop"""
+    """móvil y desktop"""
     scroll_js = """
     <script>
-    // Función que funciona en todos los dispositivos
     function scrollAll() {
-        // Para desktop (Streamlit container)
         const container = document.querySelector('[data-testid="stAppViewContainer"]');
         if (container) {
             container.scrollTop = 0;
         }
         
-        // Para móvil (window)
         window.scrollTo(0, 0);
         
-        // Para body y html
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
     }
     
-    // Ejecutar inmediatamente y después de un delay
     scrollAll();
     setTimeout(scrollAll, 100);
     setTimeout(scrollAll, 500);
@@ -37,9 +32,9 @@ def scroll_to_top():
     components.html(scroll_js, height=0)
 
 
-# ============================================================================
+
 # 1. CONFIGURACIÓN DE PÁGINA 
-# ============================================================================
+
 
 st.set_page_config(
     page_title="IENAD-RESTAURACION",
@@ -50,16 +45,12 @@ st.set_page_config(
 if "sidebar_open" not in st.session_state:
     st.session_state.sidebar_open = True
 
-# ============================================================================
 # 2. SISTEMA DE ESTILOS AVANZADO (CSS) - MANTENIDO
-# ============================================================================
 
 st.markdown("""
     <style>
-    /* 1. IMPORTACIÓN DE FUENTES */
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@300;400;600&display=swap');
 
-    /* 2. VARIABLES Y CONFIGURACIÓN GLOBAL */
     :root {
         --primary: #1E3A8A;
         --secondary: #D4AF37;
@@ -67,13 +58,11 @@ st.markdown("""
         --light: #ffffff;
     }
 
-    /* Viewport para móvil */
     @viewport {
         width: device-width;
         initial-scale: 1.0;
     }
 
-    /* 3. ESTILOS BASE */
     section.main > div {
         max-width: 100% !important;
         padding-left: 0 !important;
@@ -88,7 +77,6 @@ st.markdown("""
         background-color: var(--light);
     }
 
-    /* 4. TIPOGRAFÍAS */
     h1, h2, h3 {
         font-family: 'Playfair Display', serif !important;
         font-weight: 900 !important;
@@ -98,7 +86,6 @@ st.markdown("""
         font-family: 'Montserrat', sans-serif !important;
     }
 
-    /* 5. HEADER */
     header[data-testid="stHeader"] {
         background-color: var(--dark) !important;
         border-bottom: 1px solid rgba(212, 175, 55, 0.3) !important;
@@ -106,7 +93,6 @@ st.markdown("""
         z-index: 999 !important;
     }
 
-    /* 6. SIDEBAR */
     [data-testid="stSidebar"] {
         background: linear-gradient(180deg, var(--dark) 0%, #1e293b 100%) !important;
         border-right: 1px solid var(--secondary);
@@ -117,7 +103,6 @@ st.markdown("""
         font-family: 'Montserrat', sans-serif;
     }
 
-    /* 7. NAVEGACIÓN */
     [data-testid="stSidebarNav"] li:hover span {
         color: var(--secondary) !important;
         font-weight: 600 !important;
@@ -129,7 +114,6 @@ st.markdown("""
         transition: all 0.3s ease !important;
     }
 
-    /* 8. BOTÓN COLAPSADO */
     button[data-testid="collapsedControl"] {
         position: relative !important;
         background-color: rgba(255, 255, 255, 0.05) !important;
@@ -161,7 +145,6 @@ st.markdown("""
         font-weight: bold !important;
     }
 
-    /* 9. COMPONENTES */
     .hero-section {
         background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), 
                     url('https://images.unsplash.com/photo-1438232992991-995b7058bbb3?q=80&w=2000');
@@ -222,9 +205,7 @@ st.markdown("""
         border: none !important;
     }
 
-    /* ======================================
-       HEADER CAMUFLADO
-    ====================================== */
+    
     header[data-testid="stHeader"] {
         background: #071840 !important;
         box-shadow: none !important;
@@ -250,13 +231,9 @@ st.markdown("""
         border-radius: 8px;
     }
 
-    /* ======================================
-       MEDIA QUERIES PARA MÓVIL
-       ====================================== */
     
-    /* Para pantallas menores a 768px (tablets y móviles) */
+    
     @media (max-width: 768px) {
-        /* Títulos */
         h1 {
             font-size: 2rem !important;
             line-height: 1.2 !important;
@@ -270,52 +247,44 @@ st.markdown("""
             font-size: 1.4rem !important;
         }
         
-        /* Tarjetas */
         .glass-card {
             padding: 20px 15px !important;
             margin-bottom: 15px !important;
             border-radius: 15px !important;
         }
         
-        /* Hero section */
         .hero-section {
             padding: 40px 15px !important;
             margin-bottom: 20px !important;
             border-radius: 15px !important;
         }
         
-        /* Botones */
         .stButton > button {
             padding: 14px 16px !important;
             font-size: 0.95rem !important;
             margin: 5px 0 !important;
         }
         
-        /* Columnas en Streamlit */
         [data-testid="column"] {
             width: 100% !important;
             margin-bottom: 15px !important;
         }
         
-        /* Sidebar más compacta */
         [data-testid="stSidebar"] {
             min-width: 240px !important;
         }
         
-        /* Textos */
         p, span, label {
             font-size: 0.95rem !important;
             line-height: 1.4 !important;
         }
         
-        /* Imágenes */
         img {
             max-width: 100% !important;
             height: auto !important;
         }
     }
     
-    /* Para pantallas menores a 480px (móviles pequeños) */
     @media (max-width: 480px) {
         h1 {
             font-size: 1.7rem !important;
@@ -348,9 +317,7 @@ st.markdown("""
         }
     }
 
-    /* ======================================
-       ESTILOS ESPECÍFICOS PARA TU HERO SLIDESHOW
-       ====================================== */
+    
     @media (max-width: 768px) {
         .hero-slideshow {
             height: 300px !important;
@@ -384,9 +351,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# ============================================================================
 # 3. FUNCIONES DE UTILIDAD PROFESIONALES
-# ============================================================================
 
 def get_bolivia_time():
     """Obtiene la hora actual en Bolivia"""
@@ -399,34 +364,30 @@ def calculate_time_until_next_service():
     current_weekday = now.weekday()
     current_time = now.time()
     
-    # SOLO cultos (sábado y domingo según lo solicitado)
-    # Los ensayos (martes, jueves, viernes) NO aparecen aquí
+    
     services = {
-        5: [  # Sábado (weekday 5) - SOLO CULTO
+        5: [  
             {'name': 'Culto de Restauración', 'time': datetime.time(18, 30), 'icon': '🕊️'}
         ],
-        6: [  # Domingo (weekday 6) - SOLO CULTO
+        6: [  
             {'name': 'Culto Dominical', 'time': datetime.time(10, 30), 'icon': '✝️'}
         ]
-        # NOTA: Ya NO incluimos miércoles (culto de oración)
     }
     
-    # Buscar el próximo servicio en los próximos 7 días
-    for days_ahead in range(8):  # Buscar en la semana actual + 1 día
+    for days_ahead in range(8): 
         check_date = now + datetime.timedelta(days=days_ahead)
         check_weekday = check_date.weekday()
         
         if check_weekday in services:
             for service in services[check_weekday]:
-                # Crear datetime con la misma zona horaria que 'now'
                 service_datetime = datetime.datetime.combine(
                     check_date.date(), 
                     service['time'],
-                    tzinfo=now.tzinfo  # Agregar la misma zona horaria
+                    tzinfo=now.tzinfo 
                 )
                 
                 if days_ahead == 0 and service['time'] <= current_time:
-                    continue  # Este servicio ya pasó hoy
+                    continue  
                 
                 time_until = service_datetime - now
                 return {
@@ -437,7 +398,6 @@ def calculate_time_until_next_service():
                     'is_today': days_ahead == 0
                 }
     
-    # Si no encuentra ningún culto en los próximos 7 días (caso raro)
     return None
 def save_prayer_request(data):
     """Guarda la petición de oración (en producción usaría una base de datos)"""
@@ -461,9 +421,8 @@ def load_verse_of_day():
     day_of_year = datetime.datetime.now().timetuple().tm_yday
     return verses[day_of_year % len(verses)]
 
-# ============================================================================
 # 4. GESTIÓN DE NAVEGACIÓN Y ESTADO DE LA APLICACIÓN
-# ============================================================================
+
 
 if 'page' not in st.session_state:
     st.session_state.page = 'Inicio'
@@ -474,31 +433,27 @@ if 'prayer_count' not in st.session_state:
 def set_page(name):
     st.session_state.page = name
 
-# ============================================================================
-# 5. SIDEBAR REDISEÑADO
-# ============================================================================
+
+# 5. SIDEBAR 
+
 
 with st.sidebar:
     st.markdown("<br>", unsafe_allow_html=True)
     
-    # Logo de la iglesia
     try:
         st.image("LogoIglesia.jpeg", use_container_width=True)
     except:
         st.markdown("<h1 style='color:var(--secondary); text-align:center;'>✝️</h1>", unsafe_allow_html=True)
     
-    # Título y ubicación
     st.markdown("<h2 style='color:white; text-align:center; font-size:1.5rem;'>RESTAURACIÓN</h2>", unsafe_allow_html=True)
     st.markdown("<p style='text-align:center; font-size:0.8rem; margin-top:-15px;'>Cochabamba - Bolivia</p>", unsafe_allow_html=True)
     st.markdown("<hr style='border-color: #334155;'>", unsafe_allow_html=True)
     
-    # Contador de próxima reunión
-       # Contador de próxima reunión
+    
     next_service = calculate_time_until_next_service()
     if next_service:
         days_word = "Hoy" if next_service['is_today'] else "Próximo"
         
-        # Traducir el día y mes al español
         dias_semana_es = {
             'Monday': 'Lunes', 'Tuesday': 'Martes', 'Wednesday': 'Miércoles',
             'Thursday': 'Jueves', 'Friday': 'Viernes', 'Saturday': 'Sábado',
@@ -511,17 +466,13 @@ with st.sidebar:
             'September': 'Septiembre', 'October': 'Octubre', 'November': 'Noviembre', 'December': 'Diciembre'
         }
         
-        # Obtener fecha en formato inglés
         fecha_ingles = next_service['datetime'].strftime('%A %d, %H:%M')
         
-        # Traducir a español
         fecha_espanol = fecha_ingles
         for eng, esp in dias_semana_es.items():
             fecha_espanol = fecha_espanol.replace(eng, esp)
         
-        # Si necesitas traducir meses también (por si acaso)
-        # for eng, esp in meses_es.items():
-        #     fecha_espanol = fecha_espanol.replace(eng, esp)
+        
         
         st.markdown(f"""
             <div style="background: rgba(30, 58, 138, 0.2); padding: 15px; border-radius: 10px; margin-bottom: 20px;">
@@ -534,7 +485,6 @@ with st.sidebar:
             </div>
         """, unsafe_allow_html=True)
     
-    # Navegación principal
     st.button(" Inicio", on_click=set_page, args=('Inicio',))
     st.button(" Horarios de Culto", on_click=set_page, args=('Horarios',))
     st.button(" Anuncios", on_click=set_page, args=('Anuncios',))  # NUEVO
@@ -543,25 +493,20 @@ with st.sidebar:
     st.button(" Petición de Oración", on_click=set_page, args=('Oracion',))
     st.button(" Contactos Directos", on_click=set_page, args=('Contactos',))
     
-    # Información adicional en sidebar
     st.markdown("<br><br>", unsafe_allow_html=True)
     
     
     
     st.info("¡Te esperamos con los brazos abiertos!")
 
-# ============================================================================
-# 6. LÓGICA DE CONTENIDO POR PÁGINA
-# ============================================================================
+
 # PÁGINA: INICIO
-# ============================================================================
 
 if st.session_state.page == 'Inicio':
     scroll_to_top()
     import base64
     import os
     
-    # Función para convertir imagen a base64
     def get_base64_image(image_path):
         try:
             with open(image_path, "rb") as img_file:
@@ -569,12 +514,11 @@ if st.session_state.page == 'Inicio':
         except:
             return None
     
-    # Cargar las TRES imágenes para el hero
-    imagen1_base64 = None  # f1.jpeg
-    imagen2_base64 = None  # f3.jpeg  
-    imagen3_base64 = None  # f5.jpeg
+   
+    imagen1_base64 = None 
+    imagen2_base64 = None  
+    imagen3_base64 = None  
     
-    # Buscar imágenes para el hero
     for img_name, var in [('f1.jpeg', 'imagen1_base64'), ('f3.jpeg', 'imagen2_base64'), ('f5.jpeg', 'imagen3_base64')]:
         for ruta in [img_name, f'./{img_name}', f'images/{img_name}', f'static/{img_name}', f'assets/{img_name}']:
             if os.path.exists(ruta):
@@ -586,24 +530,20 @@ if st.session_state.page == 'Inicio':
                     imagen3_base64 = get_base64_image(ruta)
                 break
     
-    # Cargar imágenes para los cuadros
     fini_base64 = None
     f9_base64 = None
     otras_imagenes = {}
     
-    # Buscar fini.jpeg
     for ruta in ['fini.jpeg', './fini.jpeg', 'images/fini.jpeg', 'static/fini.jpeg', 'assets/fini.jpeg']:
         if os.path.exists(ruta):
             fini_base64 = get_base64_image(ruta)
             break
     
-    # Buscar f9.jpeg
     for ruta in ['f9.jpeg', './f9.jpeg', 'images/f9.jpeg', 'static/f9.jpeg', 'assets/f9.jpeg']:
         if os.path.exists(ruta):
             f9_base64 = get_base64_image(ruta)
             break
     
-    # Cargar otras imágenes para "Conoce más a la iglesia"
     otras_imgs_nombres = ['f6.jpeg', 'f11.jpeg', 'f10.jpeg', 'f7.jpeg']
     for img_nombre in otras_imgs_nombres:
         for ruta in [img_nombre, f'./{img_nombre}', f'images/{img_nombre}', f'static/{img_nombre}', f'assets/{img_nombre}']:
@@ -611,7 +551,6 @@ if st.session_state.page == 'Inicio':
                 otras_imagenes[img_nombre] = get_base64_image(ruta)
                 break
     
-    # Hero section (igual que antes)
     hero_html = f"""
     <!DOCTYPE html>
     <html>
@@ -688,19 +627,14 @@ if st.session_state.page == 'Inicio':
     </head>
     <body>
         <div class="hero-slideshow">
-            <!-- Imagen 1 -->
             <div class="slide active" id="slide1" style="background-image: url('data:image/jpeg;base64,{imagen1_base64 if imagen1_base64 else ''}');"></div>
             
-            <!-- Imagen 2 -->
             <div class="slide" id="slide2" style="background-image: url('data:image/jpeg;base64,{imagen2_base64 if imagen2_base64 else ''}');"></div>
             
-            <!-- Imagen 3 -->
             <div class="slide" id="slide3" style="background-image: url('data:image/jpeg;base64,{imagen3_base64 if imagen3_base64 else ''}');"></div>
             
-            <!-- Overlay para oscurecer -->
             <div class="hero-overlay"></div>
             
-            <!-- Contenido de texto -->
             <div class="hero-content">
                 <h1 style="font-size: 3.8rem; color: white; margin-bottom: 1px; text-shadow: 2px 2px 6px rgba(0,0,0,0.8); line-height: 1.1;">
                     IENAD BETANIA<br>
@@ -724,20 +658,15 @@ if st.session_state.page == 'Inicio':
             const totalSlides = slides.length;
             
             function showNextSlide() {{
-                // Ocultar slide actual
                 slides[currentSlide].classList.remove('active');
                 
-                // Calcular siguiente slide
                 currentSlide = (currentSlide + 1) % totalSlides;
                 
-                // Mostrar siguiente slide
                 slides[currentSlide].classList.add('active');
             }}
             
-            // Cambiar slide cada 3 segundos (3000 milisegundos)
             setInterval(showNextSlide, 3000);
             
-            // Inicializar primera transición después de 3 segundos
             setTimeout(showNextSlide, 3000);
         }});
         </script>
@@ -745,10 +674,8 @@ if st.session_state.page == 'Inicio':
     </html>
     """
     
-    # Mostrar el hero section
     st.components.v1.html(hero_html, height=500)
     
-    # 2. TARJETAS DE INFORMACIÓN (Misión, Visión, Valores)
     col1, col2, col3 = st.columns(3)
     
     with col1:
@@ -774,10 +701,8 @@ if st.session_state.page == 'Inicio':
 
     st.markdown("<br><br>", unsafe_allow_html=True)
     
-    # 3. VERSÍCULO DEL DÍA
     verse = load_verse_of_day()
     
-    # Formatear la fecha en español
     meses_es = {
         'January': 'Enero', 'February': 'Febrero', 'March': 'Marzo', 'April': 'Abril',
         'May': 'Mayo', 'June': 'Junio', 'July': 'Julio', 'August': 'Agosto',
@@ -818,7 +743,6 @@ if st.session_state.page == 'Inicio':
 
     st.markdown("<br><br>", unsafe_allow_html=True)
     
-    # 4. DOS CUADROS GRANDES: "¿Qué creemos?" y "Acerca de nosotros"
     st.markdown("""
         <div style="text-align:center; padding: 20px 0 40px 0;">
             <h1 style='font-size:3.5rem; color:#1E3A8A; margin-bottom: 10px; font-family: "Playfair Display";'>Conoce nuestra fe e historia</h1>
@@ -829,7 +753,6 @@ if st.session_state.page == 'Inicio':
     
     col_creemos, col_acerca = st.columns(2)
     
-    # 1. CSS ESPECÍFICO (Solo para botones en el área principal, NO toca el sidebar)
     st.markdown("""
         <style>
         /* Este selector asegura que SOLO los botones del área central cambien */
@@ -855,7 +778,6 @@ if st.session_state.page == 'Inicio':
     col_creemos, col_acerca = st.columns(2)
 
     with col_creemos:
-        # Cuadro "¿Qué creemos?"
         if fini_base64:
             cuadro_creemos_html = f"""
             <div style="position: relative; height: 280px; border-radius: 15px; overflow: hidden; margin-bottom: 10px;">
@@ -874,13 +796,11 @@ if st.session_state.page == 'Inicio':
             """
         st.markdown(cuadro_creemos_html, unsafe_allow_html=True)
         
-        # BOTÓN: Texto actualizado a "¿Qué creemos?"
         if st.button("¿Qué creemos?", key="btn_creemos", use_container_width=True):
             st.session_state.page = 'pagina_creemos'
             st.rerun()
 
     with col_acerca:
-        # Cuadro "Acerca de nosotros"
         if f9_base64:
             cuadro_acerca_html = f"""
             <div style="position: relative; height: 280px; border-radius: 15px; overflow: hidden; margin-bottom: 10px;">
@@ -899,7 +819,6 @@ if st.session_state.page == 'Inicio':
             """
         st.markdown(cuadro_acerca_html, unsafe_allow_html=True)
         
-        # BOTÓN: Texto actualizado a "Acerca de nosotros"
         if st.button("Acerca de nosotros", key="btn_acerca", use_container_width=True):
             st.session_state.page = 'pagina_acerca'
             st.rerun()
@@ -912,9 +831,7 @@ if st.session_state.page == 'Inicio':
                 
             </div>
         """, unsafe_allow_html=True)    
-    # Mostrar las otras imágenes en 2 filas de 2 columnas SIN SOMBRAS
     if otras_imagenes:
-        # Primera fila
         col_img1, col_img2 = st.columns(2)
         
         with col_img1:
@@ -935,7 +852,6 @@ if st.session_state.page == 'Inicio':
                 </div>
                 """, unsafe_allow_html=True)
         
-        # Segunda fila
         col_img3, col_img4 = st.columns(2)
         
         with col_img3:
@@ -987,7 +903,6 @@ if st.session_state.page == 'Inicio':
             'September': 'Septiembre', 'October': 'Octubre', 'November': 'Noviembre', 'December': 'Diciembre'
         }
         
-        # Determinar qué día es para mostrar el mensaje correcto
         if next_service['name'] == 'Culto de Restauración':
             fecha_servicio = next_service['datetime'].strftime('%A %d de %B, %H:%M')
             actividad_desc = "Sábado 6:30 PM - Culto principal de restauración y palabra"
@@ -1004,7 +919,6 @@ if st.session_state.page == 'Inicio':
         for eng, esp in meses_es.items():
             fecha_servicio = fecha_servicio.replace(eng, esp)
         
-        # Contenedor principal
         st.markdown(f"""
         <div style="background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 800px; margin: 0 auto; border-top: 5px solid #D4AF37;">
             <div style="text-align: center;">
@@ -1023,7 +937,7 @@ if st.session_state.page == 'Inicio':
         
         st.markdown("<h4 style='color: #1E3A8A; text-align: center; margin-bottom: 30px;'>Comienza en:</h4>", unsafe_allow_html=True)
         
-        # Contador
+        
         col_dias, col_horas, col_minutos = st.columns(3)
         
         with col_dias:
@@ -1050,13 +964,10 @@ if st.session_state.page == 'Inicio':
             </div>
             """, unsafe_allow_html=True)
         
-        # Botón para ver todos los horarios
         
         
-        # Cerrar el div principal
         st.markdown("</div>", unsafe_allow_html=True)
     else:
-        # Si no hay próximo culto (ejemplo: es domingo por la tarde)
         st.markdown("""
         <div style="background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 800px; margin: 0 auto; border-top: 5px solid #D4AF37; text-align: center;">
             <h3 style="color: #1E3A8A; margin-top: 0;">🎉 ¡Hoy hemos adorado juntos!</h3>
@@ -1070,18 +981,14 @@ if st.session_state.page == 'Inicio':
         </div>
         """, unsafe_allow_html=True)
         
-        # Cerrar el div principal
     st.markdown("</div>", unsafe_allow_html=True)
     
     st.markdown("<br><br>", unsafe_allow_html=True)
 
-# ============================================================================
 # PÁGINA: HORARIOS (CON FOTOS Y ESTILO PREMIUM)
-# ============================================================================
 
 elif st.session_state.page == 'Horarios':
     scroll_to_top()
-    # Encabezado con estilo de revista premium
     st.markdown(f"""
         <div style="text-align:center; padding: 20px 0 40px 0;">
             <h1 style='font-size:3.8rem; color:var(--primary); margin-bottom: 5px;'>Nuestros Horarios</h1>
@@ -1092,7 +999,6 @@ elif st.session_state.page == 'Horarios':
         </div>
     """, unsafe_allow_html=True)
     
-    # Datos de horarios actualizados con imágenes
     horarios = [
         {
             "dia": "Sábado",
@@ -1126,14 +1032,12 @@ elif st.session_state.page == 'Horarios':
         }
     ]
     
-    # Columnas principales
     col1, col2 = st.columns(2, gap="large")
     
     for i, dia_info in enumerate(horarios):
         with [col1, col2][i]:
             eventos_html = ""
             for evento in dia_info["eventos"]:
-                # Lógica para mostrar imagen o icono (palomita)
                 if "img" in evento:
                     media_html = f'<img src="{evento["img"]}" style="width: 70px; height: 70px; border-radius: 12px; object-fit: cover; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">'
                 else:
@@ -1175,7 +1079,6 @@ elif st.session_state.page == 'Horarios':
                 </div>
             """, unsafe_allow_html=True)
     
-    # CTA - BIENVENIDA ABIERTA
     st.markdown("""
         <div style="
             background: linear-gradient(135deg, var(--dark) 0%, #1e293b 100%);
@@ -1197,14 +1100,11 @@ elif st.session_state.page == 'Horarios':
     # Nota de aviso (Footer de horarios)
     st.info("💡 **Aviso:** Durante días feriados, los horarios pueden variar. Te recomendamos seguir nuestras redes sociales para anuncios de último minuto.")
 
-# ============================================================================
 # PÁGINA: ANUNCIOS - DISEÑO PREMIUM (MANTENIENDO TODA LA FUNCIONALIDAD)
-# ============================================================================
 
 elif st.session_state.page == 'Anuncios':
     scroll_to_top()
     
-    # Encabezado con el estilo del sistema
     st.markdown(f"""
         <div style="text-align:center; padding: 20px 0 40px 0;">
             <h1 style='font-size:3.8rem; color:var(--primary); margin-bottom: 5px;'> Anuncios Semanales</h1>
@@ -1215,9 +1115,6 @@ elif st.session_state.page == 'Anuncios':
         </div>
     """, unsafe_allow_html=True)
     
-    # ============================================
-    # SECCIÓN: ANUNCIOS RECIENTES
-    # ============================================
     st.markdown(f"""
     <div style="
         background: white; 
@@ -1240,9 +1137,6 @@ elif st.session_state.page == 'Anuncios':
     </div>
     """, unsafe_allow_html=True)
     
-    # ============================================
-    # LÓGICA DE IMÁGENES (FUNCIONALIDAD INTACTA)
-    # ============================================
     try:
         import base64
         import os
@@ -1257,17 +1151,14 @@ elif st.session_state.page == 'Anuncios':
             except:
                 return None
         
-        # Cargar imágenes buscando en múltiples rutas (Mantenida exactamente igual)
         img_musica_base64 = None
         img_danza_base64 = None
         
-        # Buscar imagen de música (f15.jpeg)
         for ruta in ['f15.jpeg', './f15.jpeg', 'images/f15.jpeg', 'static/f15.jpeg', 'assets/f15.jpeg']:
             if os.path.exists(ruta):
                 img_musica_base64 = image_to_base64(ruta)
                 break
         
-        # Buscar imagen de danza (f16.jpeg)  
         for ruta in ['f16.jpeg', './f16.jpeg', 'images/f16.jpeg', 'static/f16.jpeg', 'assets/f16.jpeg']:
 
             if os.path.exists(ruta):
@@ -1280,13 +1171,9 @@ elif st.session_state.page == 'Anuncios':
         img_musica_base64 = None
         img_danza_base64 = None
 
-    # ============================================
-    # ACTIVIDADES REGULARES: MÚSICA
-    # ============================================
     
     st.markdown(f"<h2 style='color:var(--primary); font-family: \"Playfair Display\"; margin-bottom: 25px;'> Ministerio de Música</h2>", unsafe_allow_html=True)
     
-    # Mostrar imagen de música si existe
     if img_musica_base64:
         st.markdown(f"""
         <div style="text-align: center; margin-bottom: 30px;">
@@ -1301,7 +1188,6 @@ elif st.session_state.page == 'Anuncios':
         </div>
         """, unsafe_allow_html=True)
     
-    # Detalles Música en Columnas
     col_musica1, col_musica2, col_musica3 = st.columns(3)
     
     with col_musica1:
@@ -1344,9 +1230,7 @@ elif st.session_state.page == 'Anuncios':
     
     st.markdown("<br><br>", unsafe_allow_html=True)
 
-    # ============================================
-    # ACTIVIDADES REGULARES: DANZA
-    # ============================================
+    
     
     st.markdown(f"<h2 style='color:var(--secondary); font-family: \"Playfair Display\"; margin-bottom: 25px;'> Panderos y Danza</h2>", unsafe_allow_html=True)
     
@@ -1403,9 +1287,7 @@ elif st.session_state.page == 'Anuncios':
     </div>
     """, unsafe_allow_html=True)
 
-    # ============================================
-    # SECCIÓN: CONTACTOS DIRECTOS (WHATSAPP)
-    # ============================================
+    
     st.markdown("<br><br>", unsafe_allow_html=True)
     st.markdown(f"<h3 style='color:var(--primary); font-family: \"Playfair Display\"; text-align: center; margin-bottom: 30px;'>📲 Escríbenos directamente</h3>", unsafe_allow_html=True)
     
@@ -1445,9 +1327,7 @@ elif st.session_state.page == 'Anuncios':
         </div>
         """, unsafe_allow_html=True)
 
-    # ============================================
-    # RESUMEN Y VERSÍCULO FINAL
-    # ============================================
+    
     st.markdown("<br><hr style='border-color: #e2e8f0;'><br>", unsafe_allow_html=True)
     
     col_resumen1, col_resumen2 = st.columns(2)
@@ -1480,9 +1360,7 @@ elif st.session_state.page == 'Anuncios':
     st.info("💡 **Aviso:** Durante días feriados, los horarios pueden variar. Te recomendamos seguir nuestras redes sociales para anuncios de último minuto.")
 
 
-# ============================================================================
 # PÁGINA: UBICACIÓN - DISEÑO FINAL CON IMAGEN BAJO EL BOTÓN
-# ============================================================================
 
 elif st.session_state.page == 'Ubicacion':
     scroll_to_top()
@@ -1501,7 +1379,6 @@ elif st.session_state.page == 'Ubicacion':
 
     img_f17_base64 = get_base64_img("f17.jpeg")
     
-    # 2. Encabezado Premium
     st.markdown(f"""
         <div style="text-align:center; padding: 20px 0 20px 0;">
             <h1 style='font-size:3.8rem; color:#1E3A8A; margin-bottom: 5px; font-family: "Playfair Display";'>¿Dónde estamos ubicados?</h1>
@@ -1512,7 +1389,6 @@ elif st.session_state.page == 'Ubicacion':
         </div>
     """, unsafe_allow_html=True)
     
-    # 3. IMAGEN PRINCIPAL (Lugar.jpeg) - TODO EL ANCHO
     try:
         st.image("Lugar.jpeg", use_container_width=True)
     except:
@@ -1520,11 +1396,9 @@ elif st.session_state.page == 'Ubicacion':
 
     st.markdown("<div style='margin-bottom: 40px;'></div>", unsafe_allow_html=True)
 
-    # 4. FILA DE DETALLES: DIRECCIÓN Y NUESTRO INTERIOR
     col_info, col_interior = st.columns([1, 1], gap="large")
     
     with col_info:
-        # Generamos el HTML de la imagen f17.jpeg si existe
         f17_html = f"""
         <div style="margin-top: 25px; text-align: center;">
             <img src="data:image/jpeg;base64,{img_f17_base64}" 
@@ -1532,7 +1406,6 @@ elif st.session_state.page == 'Ubicacion':
         </div>
         """ if img_f17_base64 else ""
 
-        # Bloque de Dirección Exacta: Título -> Dirección -> Botón -> Imagen f17
         info_html = f"""
         <div class="glass-card" style="padding: 30px; border-left: 5px solid #D4AF37; background: #ffffff; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05);">
             <h3 style="color:#D4AF37; margin-top: 0; font-family: 'Playfair Display'; font-size: 1.5rem;">📍 Dirección Exacta</h3>
@@ -1558,7 +1431,6 @@ elif st.session_state.page == 'Ubicacion':
             {f17_html}
         </div>
         """
-        # Ajustamos height a 650 para que el botón e imagen quepan sin scroll
         st.components.v1.html(info_html, height=650)
 
     with col_interior:
@@ -1568,7 +1440,6 @@ elif st.session_state.page == 'Ubicacion':
         except:
             st.warning("Foto del interior no disponible.")
 
-    # 5. Footer
     st.markdown("<hr style='margin: 40px 0; border-color: #e2e8f0; opacity: 0.6;'>", unsafe_allow_html=True)
     st.markdown("""
     <div style="text-align: center; color: #64748b; font-family: 'Montserrat'; padding-bottom: 40px;">
@@ -1576,9 +1447,7 @@ elif st.session_state.page == 'Ubicacion':
         <p style="font-size: 0.9rem; margin-top: 5px;">¡Las puertas están abiertas para ti y tu familia!</p>
     </div>
     """, unsafe_allow_html=True)
-# ============================================================================
 # PÁGINA: REDES SOCIALES - ACTUALIZADA CON INSTAGRAM Y FACEBOOK
-# ============================================================================
 
 elif st.session_state.page == 'Redes':
     scroll_to_top()    
@@ -1593,16 +1462,13 @@ elif st.session_state.page == 'Redes':
         </div>
     """, unsafe_allow_html=True)
 
-    # 3. SECCIÓN 1: YOUTUBE (Videos con estilo de galería)
     st.markdown("<h2 style='color:#1E3A8A; font-family: \"Playfair Display\"; margin-bottom: 30px; border-left: 5px solid #CC0000; padding-left: 15px;'>Videos de YouTube</h2>", unsafe_allow_html=True)
     
 
     
-    # Crear 2 columnas para los videos de YouTube
     col_yt1, col_yt2 = st.columns(2)
     
     with col_yt1:
-        # Primer video de YouTube
         video1_html = """
         <div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); margin-bottom: 20px;">
             <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px;">
@@ -1629,7 +1495,6 @@ elif st.session_state.page == 'Redes':
         st.markdown(video1_html, unsafe_allow_html=True)
     
     with col_yt2:
-        # Segundo video de YouTube
         video2_html = """
         <div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); margin-bottom: 20px;">
             <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px;">
@@ -1655,17 +1520,13 @@ elif st.session_state.page == 'Redes':
         """
         st.markdown(video2_html, unsafe_allow_html=True)
     
-    # Línea divisoria
     st.markdown("<hr style='margin: 30px 0; border-color: #e0e0e0;'>", unsafe_allow_html=True)
     
-    # SECCIÓN 2: NUESTRAS REDES SOCIALES (AHORA 4 REDES)
     st.markdown("<h2 style='color: var(--primary); font-family: #D4AF37; margin-bottom: 30px; border-left: 5px solid #D4AF37; padding-left: 15px;'>Nuestras Redes Sociales</h2>", unsafe_allow_html=True)
     
-    # Función para cargar imágenes como base64
     def cargar_logo_base64(nombre_archivo):
         """Carga una imagen y la convierte a base64"""
         try:
-            # Buscar el archivo en diferentes ubicaciones
             posibles_rutas = [
                 nombre_archivo,
                 f'./{nombre_archivo}',
@@ -1683,18 +1544,15 @@ elif st.session_state.page == 'Redes':
         except:
             return None
     
-    # Cargar logos
     logo_youtube = cargar_logo_base64("youtube.jpeg")
     logo_tiktok = cargar_logo_base64("tiktok.jpeg")
     logo_instagram = cargar_logo_base64("insta.jpeg")
     logo_facebook = cargar_logo_base64("face.jpeg")
     
-    # Tarjetas de redes sociales en 4 columnas (2 filas de 2)
-    # Primera fila: YouTube y TikTok
+   
     col_fila1_1, col_fila1_2 = st.columns(2)
     
     with col_fila1_1:
-        # Tarjeta de YouTube ACTUALIZADA
         youtube_html = """
         <div class="glass-card" style="text-align: center; margin-bottom: 20px; border-top: 5px solid #CC0000; height: 320px; display: flex; flex-direction: column;">
             <div style="margin-bottom: 15px; flex: 0 0 auto;">
@@ -1767,11 +1625,9 @@ elif st.session_state.page == 'Redes':
         """
         st.markdown(tiktok_html, unsafe_allow_html=True)
     
-    # Segunda fila: Instagram y Facebook
     col_fila2_1, col_fila2_2 = st.columns(2)
     
     with col_fila2_1:
-        # Tarjeta de Instagram NUEVA
         instagram_html = """
         <div class="glass-card" style="text-align: center; margin-bottom: 20px; border-top: 5px solid #E4405F; height: 320px; display: flex; flex-direction: column;">
             <div style="margin-bottom: 15px; flex: 0 0 auto;">
@@ -1808,7 +1664,6 @@ elif st.session_state.page == 'Redes':
         st.markdown(instagram_html, unsafe_allow_html=True)
     
     with col_fila2_2:
-        # Tarjeta de Facebook NUEVA
         facebook_html = """
         <div class="glass-card" style="text-align: center; margin-bottom: 20px; border-top: 5px solid #1877F2; height: 320px; display: flex; flex-direction: column;">
             <div style="margin-bottom: 15px; flex: 0 0 auto;">
@@ -1844,13 +1699,10 @@ elif st.session_state.page == 'Redes':
         """
         st.markdown(facebook_html, unsafe_allow_html=True)
     
-    # Línea divisoria
     st.markdown("<hr style='margin: 40px 0; border-color: #e0e0e0;'>", unsafe_allow_html=True)
     
-    # SECCIÓN 3: VIDEOS DE TIKTOK
     st.markdown("<h2 style='color: var(--primary); font-family: #D4AF37; margin-bottom: 30px; border-left: 5px solid var(--dark); padding-left: 15px;'>Videos de Tik Tok</h2>", unsafe_allow_html=True)
     
-    # Videos de TikTok
     videos_tiktok = [
         {
             "titulo": "Mensaje de Fe",
@@ -1872,7 +1724,6 @@ elif st.session_state.page == 'Redes':
         }
     ]
     
-    # Mostrar videos en 3 columnas
     col_vid1, col_vid2, col_vid3 = st.columns(3)
     
     for i, video in enumerate(videos_tiktok):
@@ -1880,22 +1731,18 @@ elif st.session_state.page == 'Redes':
             with st.container():
                 imagen_encontrada = False
                 
-                # Intentar cargar diferentes nombres de archivo
                 for archivo in video["archivos"]:
                     try:
-                        # Intentar cargar la imagen con PIL
                         img = Image.open(archivo)
                         # Redimensionar para consistencia
                         img = img.resize((300, 200), Image.Resampling.LANCZOS)
                         
-                        # Mostrar la imagen
                         st.image(img, width=300, caption="", use_container_width="auto")
                         imagen_encontrada = True
                         break
                     except:
                         continue
                 
-                # Si no se encontró ninguna imagen
                 if not imagen_encontrada:
                     placeholder_html = f"""
                     <div style="height: 200px; background: linear-gradient(135deg, #1E3A8A 0%, #000000 100%); 
@@ -1907,14 +1754,11 @@ elif st.session_state.page == 'Redes':
                     """
                     st.markdown(placeholder_html, unsafe_allow_html=True)
                 
-                # Título y descripción
                 st.markdown(f"<h4 style='color: #1E3A8A; margin-bottom: 8px; margin-top: 10px;'>{video['titulo']}</h4>", unsafe_allow_html=True)
                 st.markdown(f"<p style='color: #64748b; font-size: 0.9rem; margin-bottom: 15px;'>{video['descripcion']}</p>", unsafe_allow_html=True)
                 
-                # Botón usando st.link_button
                 st.link_button("▶ Ver en TikTok", video['link'], type="secondary", use_container_width=True)
     
-    # Nota informativa sobre TikTok
     st.markdown("""
     <div style="background: #f8fafc; padding: 15px; border-radius: 10px; margin-top: 30px; text-align: center;">
         <p style="color: #64748b; font-size: 0.9rem; margin: 0;">
@@ -1923,7 +1767,6 @@ elif st.session_state.page == 'Redes':
     </div>
     """, unsafe_allow_html=True)
     
-    # Botón para ver más en TikTok
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("""
     <div style="text-align: center; margin-bottom: 30px;">
@@ -1936,10 +1779,8 @@ elif st.session_state.page == 'Redes':
     </div>
     """, unsafe_allow_html=True)
     
-    # SECCIÓN ADICIONAL: Enlaces a todas las redes
     st.markdown("<hr style='margin: 40px 0; border-color: #e0e0e0;'>", unsafe_allow_html=True)
     
-    # SECCIÓN ADICIONAL: Enlaces a todas las redes (VERSIÓN CORREGIDA)
     st.markdown("<hr style='margin: 40px 0; border-color: #e0e0e0;'>", unsafe_allow_html=True)
 
     st.markdown("<br><br>", unsafe_allow_html=True)
@@ -1958,7 +1799,6 @@ elif st.session_state.page == 'Redes':
         <br><br>
     """, unsafe_allow_html=True)
 
-    # Mensaje final
     st.markdown("""
     <div style="text-align: center; margin-top: 20px;">
         <p style="color: #64748b; font-size: 0.9rem; margin: 0;">
@@ -1968,13 +1808,10 @@ elif st.session_state.page == 'Redes':
     """, unsafe_allow_html=True)
 
 
-# ============================================================================
 # PÁGINA: ORACIÓN - DISEÑO PREMIUM DARK (CORREGIDO)
-# ============================================================================
 
 elif st.session_state.page == 'Oracion':
     scroll_to_top()
-    # 1. Título de la Página (Tu diseño actual centrado)
     st.markdown("""
         <div style="text-align:center; padding: 20px 0 40px 0;">
             <h1 style='font-size:3.5rem; color:#1E3A8A; margin-bottom: 10px; font-family: "Playfair Display";'>Petición de Oración</h1>
@@ -1985,7 +1822,6 @@ elif st.session_state.page == 'Oracion':
         </div>
     """, unsafe_allow_html=True)
     
-    # 2. Contenedor de instrucciones
     st.markdown("""
         <div style="background: var(--dark, #0e1117); 
                     padding: 25px; 
@@ -1999,7 +1835,6 @@ elif st.session_state.page == 'Oracion':
         </div>
     """, unsafe_allow_html=True)
     
-    # 3. Formulario
     with st.form("peticion_oracion_form", clear_on_submit=True):
         col1, col2 = st.columns(2)
         
@@ -2014,7 +1849,6 @@ elif st.session_state.page == 'Oracion':
         st.markdown("<br><label style='color: var(--dark, #1E3A8A); font-weight: bold;'>Tu petición de oración</label>", unsafe_allow_html=True)
         peticion = st.text_area("Petición", label_visibility="collapsed", placeholder="Describe tu necesidad específica...", height=120)
         
-        # Estilo CSS para el botón (Dark con letras doradas)
         st.markdown("""
             <style>
             div[data-testid="stForm"] button[kind="primary"] {
@@ -2035,9 +1869,7 @@ elif st.session_state.page == 'Oracion':
 
         submit = st.form_submit_button("ENVIAR PETICIÓN", use_container_width=True, type="primary")
 
-        # ============================================================
-        # LÓGICA DE PROCESAMIENTO Y GUARDADO (CORREGIDA)
-        # ============================================================
+       
         if submit:
             if nombre and telefono and peticion:
                 try:
@@ -2045,7 +1877,6 @@ elif st.session_state.page == 'Oracion':
                     now = datetime.datetime.now()
                     fecha_f = now.strftime("%d/%m/%Y %H:%M")
                     
-                    # 1. Preparar el diccionario de datos
                     prayer_data = {
                         "id": now.strftime("%Y%m%d%H%M%S"),
                         "nombre": nombre,
@@ -2054,11 +1885,9 @@ elif st.session_state.page == 'Oracion':
                         "fecha": fecha_f
                     }
                     
-                    # 2. Lógica de guardado en JSON
                     json_file = 'peticiones_oracion.json'
                     peticiones_list = []
 
-                    # Si el archivo ya existe, leemos lo que tiene
                     if os.path.exists(json_file):
                         with open(json_file, 'r', encoding='utf-8') as f:
                             try:
@@ -2066,18 +1895,14 @@ elif st.session_state.page == 'Oracion':
                             except json.JSONDecodeError:
                                 peticiones_list = [] # Por si el archivo está vacío o corrupto
 
-                    # Añadimos la nueva petición a la lista
                     peticiones_list.append(prayer_data)
 
-                    # Guardamos la lista actualizada
                     with open(json_file, 'w', encoding='utf-8') as f:
                         json.dump(peticiones_list, f, indent=4, ensure_ascii=False)
                     
-                    # 3. Crear mensaje y enlace de WhatsApp
                     msg = f"*NUEVA PETICIÓN DE ORACIÓN*\n\n*Nombre:* {nombre}\n*WhatsApp:* {telefono}\n*Fecha:* {fecha_f}\n\n*Petición:*\n{peticion}"
                     whatsapp_url = f"https://wa.me/59167435065?text={urllib.parse.quote(msg)}"
                     
-                    # 4. Mostrar confirmación profesional (Texto corregido para visibilidad)
                     st.markdown(f"""
                         <div style="background: rgba(37, 211, 102, 0.1); 
                                     border: 1px solid #25D366; 
@@ -2131,7 +1956,6 @@ elif st.session_state.page == 'Oracion':
                     </div>
                 """, unsafe_allow_html=True)
 
-    # 4. Sección informativa final
     st.markdown("""
         <div style="margin-top: 40px; background: var(--dark); padding: 30px; border-radius: 15px; border: 1px solid #333;">
             <h5 style="color: #D4AF37; text-align: center; margin-bottom: 25px; font-family: 'Playfair Display', serif;">
@@ -2158,9 +1982,7 @@ elif st.session_state.page == 'Oracion':
     """, unsafe_allow_html=True)
 
     
-# ============================================================================
 # PÁGINA: CONTACTOS - VERSIÓN ACTUALIZADA
-# ============================================================================
 
 elif st.session_state.page == 'Contactos':
     scroll_to_top()
@@ -2174,10 +1996,8 @@ elif st.session_state.page == 'Contactos':
         </div>
     """, unsafe_allow_html=True)
     
-    # Importar components para HTML
     import streamlit.components.v1 as components
     
-    # Contactos principales simplificados
     contactos = [
         {
             "nombre": "Pastora Paula",
@@ -2191,7 +2011,6 @@ elif st.session_state.page == 'Contactos':
         }
     ]
     
-    # Mostrar contactos en columnas
     col1, col2 = st.columns(2)
     
     for i, contacto in enumerate(contactos):
@@ -2221,13 +2040,10 @@ elif st.session_state.page == 'Contactos':
             """
             components.html(contacto_html, height=200)
     
-    # Espacio entre secciones
     st.markdown("<br><br>", unsafe_allow_html=True)
     
-    # Grupo de WhatsApp con logo
     st.markdown("<h3 style='color:#1E3A8A; text-align: center;'>Grupo de WhatsApp de la Iglesia</h3>", unsafe_allow_html=True)
     
-    # Mostrar logo de la iglesia
     try:
         col_l1, col_l2, col_l3 = st.columns([1, 1.2, 1])
         with col_l2:
@@ -2235,8 +2051,7 @@ elif st.session_state.page == 'Contactos':
     except:
         pass
     
-    # HTML del grupo usando components.html
-    # SECCIÓN DEL GRUPO DE WHATSAPP CORREGIDA
+   
     grupo_html = """
     <div class="glass-card" style="max-width: 1000px; margin: 0 auto;">
         <div style="text-align: center; margin-bottom: 20px;">
@@ -2246,12 +2061,10 @@ elif st.session_state.page == 'Contactos':
             </p>
         </div>
         
-        <!-- Título "Enlace del Grupo:" CORREGIDO -->
         <div style="text-align: center; margin-bottom: 10px;">
             <h3 style="color: #1E3A8A; margin: 0 0 15px 0;">Enlace del Grupo:</h3>
         </div>
         
-        <!-- Enlace en cuadro gris -->
         <div style="margin: 15px 0; text-align: center;">
             <div style="background: #f8fafc; padding: 15px; border-radius: 10px; margin: 0 0 20px 0; border: 1px solid #e0e0e0;">
                 <p style="color: #555; margin: 0; word-break: break-all; font-size: 0.9rem;">
@@ -2260,7 +2073,6 @@ elif st.session_state.page == 'Contactos':
             </div>
         </div>
         
-        <!-- Botón para unirse -->
         <div style="display: flex; gap: 10px; margin-top: 10px;">
             <a href="https://chat.whatsapp.com/KR6Av3mLAIW1JaSuZrOWvn" target="_blank" style="text-decoration: none; flex: 1;">
                 <button style="background: #25D366; color: white; border: none; padding: 15px; 
@@ -2275,13 +2087,9 @@ elif st.session_state.page == 'Contactos':
     # Contacto de emergencia
     st.markdown("<br><br>", unsafe_allow_html=True)
     
-# ============================================================================
-# PÁGINA: ¿QUÉ CREEMOS? - VERSIÓN FINAL CORREGIDA
-# ============================================================================
-
+# PÁGINA: ¿QUÉ CREEMOS?
 elif st.session_state.page == 'pagina_creemos':
     scroll_to_top()
-    # 1. Estilo para el botón Volver (Fondo Dark / Letras Doradas)
     st.markdown("""
         <style>
         section[data-testid="stMain"] div.stButton > button {
@@ -2306,20 +2114,16 @@ elif st.session_state.page == 'pagina_creemos':
         </div>
     """, unsafe_allow_html=True)
     
-    # 2. Botón Volver
     col_v, _ = st.columns([1, 3])
     with col_v:
         if st.button("← VOLVER AL INICIO", use_container_width=True):
             st.session_state.page = 'Inicio'
             st.rerun()
 
-    # 3. CONTENIDO (IMPORTANTE: El HTML debe estar pegado a la izquierda del editor)
     col_izq, col_der = st.columns([2, 1])
 
     
-        # IMPORTANTE: No dejes NINGÚN espacio antes de <div. Debe estar pegado al margen.
     with col_izq:
-            # Fíjate que <div está pegado al borde izquierdo del código
             html_contenido = f"""
     <div style="background-color: var(--dark, #1E3A8A); 
                 padding: 30px; 
@@ -2354,17 +2158,11 @@ elif st.session_state.page == 'pagina_creemos':
 
     
     
-# ============================================================================
-# PÁGINA: ACERCA DE NOSOTROS - VERSIÓN CORREGIDA (SIN CÓDIGO A LA VISTA)
-# ============================================================================
 
-# ============================================================================
-# PÁGINA: ACERCA DE NOSOTROS - HISTORIA EXACTA
-# ============================================================================
+# PÁGINA: ACERCA DE NOSOTROS 
 
 elif st.session_state.page == 'pagina_acerca':
     scroll_to_top()
-    # 1. Estilos para botones del área principal
     st.markdown("""
         <style>
         section[data-testid="stMain"] div.stButton > button {
@@ -2388,14 +2186,12 @@ elif st.session_state.page == 'pagina_acerca':
                 
             </div>
         """, unsafe_allow_html=True)    
-    # 2. Botón Volver
     col_v, _ = st.columns([1, 3])
     with col_v:
         if st.button("← VOLVER AL INICIO", use_container_width=True):
             st.session_state.page = 'Inicio'
             st.rerun()
 
-    # 3. CONTENIDO (HTML pegado al margen izquierdo para evitar errores)
     col_izq, col_der = st.columns([2, 1])
 
     with col_izq:
@@ -2429,12 +2225,9 @@ elif st.session_state.page == 'pagina_acerca':
     st.markdown("<br><br>", unsafe_allow_html=True)
     
    
-# ============================================================================
 # FOOTER 
-# ============================================================================
 footer_html = """
 <style>
-    /* ====== FIX STREAMLIT FULL WIDTH ====== */
     div[data-testid="stAppViewContainer"] {
         overflow-x: hidden;
     }
@@ -2444,7 +2237,6 @@ footer_html = """
         padding-right: 0 !important;
     }
 
-    /* ====== FOOTER ====== */
     .main-footer {
         background: linear-gradient(135deg, #071840 0%, #1E293B 100%);
         padding: 50px 20px;
@@ -2537,8 +2329,5 @@ footer_html = """
 </div>
 """
 
-# Esta es la línea clave que renderiza el HTML
 st.markdown(footer_html, unsafe_allow_html=True)
-# ============================================================================
 # FIN DEL ARCHIVO
-# ============================================================================
