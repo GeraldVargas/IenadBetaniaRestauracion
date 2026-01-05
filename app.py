@@ -984,8 +984,20 @@ if st.session_state.page == 'Inicio':
     st.markdown("</div>", unsafe_allow_html=True)
     
     st.markdown("<br><br>", unsafe_allow_html=True)
+    st.markdown("""
+        <div style="text-align:center; padding: 20px 0 40px 0;">
+            <h1 style='font-size:3.5rem; color:#1E3A8A; margin-bottom: 10px; font-family: "Playfair Display";'>¡No te pierdas nada!</h1>
+            <div style="width: 100px; height: 4px; background: #D4AF37; margin: 0 auto 25px auto; border-radius: 2px;"></div>
+        </div>
+    """, unsafe_allow_html=True)
+    
+    col_btn1, col_btn2, col_btn3 = st.columns([1, 2, 1])
+    with col_btn2:
+        if st.button("PONTE AL TANTO CON LOS ANUNCIOS", use_container_width=True, type="primary"):
+            st.session_state.page = 'Anuncios'
+            st.rerun()
 
-# PÁGINA: HORARIOS (CON FOTOS Y ESTILO PREMIUM)
+# PÁGINA: HORARIOS
 
 elif st.session_state.page == 'Horarios':
     scroll_to_top()
