@@ -9,58 +9,6 @@ import json
 import os
 import urllib.parse
 
-hide_all_style = """
-<style>
-/* OCULTAR POR SELECTORES MÁS ESPECÍFICOS */
-[data-testid="stSidebarUserContent"] + div,
-div[class*="stAppDeploy"],
-div[class*="deployButton"],
-button[title*="Fork"],
-button[title*="Stop"],
-a[href*="streamlit"],
-img[src*="streamlit"],
-svg[data-testid*="streamlit"],
-footer > *,
-header > *,
-div[data-testid="stDecoration"],
-div[data-testid="stStatusWidget"],
-div[class*="stNotification"],
-div[class*="stToast"] {
-    display: none !important;
-    visibility: hidden !important;
-    height: 0 !important;
-    width: 0 !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-}
-
-* {
-    max-height: 100vh !important;
-}
-
-body:after {
-    content: "" !important;
-}
-
-[data-testid="stAppViewContainer"] {
-    pointer-events: auto !important;
-}
-
-/* AJUSTAR VIEWPORT */
-.stApp {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-}
-</style>
-"""
-
-st.markdown(hide_all_style, unsafe_allow_html=True)
-
 
 def scroll_to_top():
     """móvil y desktop"""
@@ -99,7 +47,8 @@ st.set_page_config(
 if "sidebar_open" not in st.session_state:
     st.session_state.sidebar_open = True
 
-# 2. SISTEMA DE ESTILOS AVANZADO (CSS) - MANTENIDO
+# 2. SISTEMA DE ESTILOS 
+
 
 st.markdown("""
     <style>
@@ -204,7 +153,7 @@ st.markdown("""
                     url('https://images.unsplash.com/photo-1438232992991-995b7058bbb3?q=80&w=2000');
         background-size: cover;
         background-position: center;
-        padding: 100px 40px;
+        padding: 0px 0px;
         border-radius: 30px;
         text-align: center;
         color: white;
@@ -675,7 +624,7 @@ if st.session_state.page == 'Inicio':
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
-            padding-top: 5px;
+            padding-top: 0px;
         }}
         </style>
     </head>
@@ -690,14 +639,14 @@ if st.session_state.page == 'Inicio':
             <div class="hero-overlay"></div>
             
             <div class="hero-content">
-                <h1 style="font-size: 3.8rem; color: white; margin-bottom: 1px; text-shadow: 2px 2px 6px rgba(0,0,0,0.8); line-height: 1.1;">
+                <h1 style="margin-top :0px;font-size: 3.8rem; color: white; margin-bottom: 1px; text-shadow: 2px 2px 6px rgba(0,0,0,0.8); line-height: 1.1;">
                     IENAD BETANIA<br>
                     <span style="font-size: 2.5rem; color: #D4AF37; text-shadow: 1px 1px 4px rgba(0,0,0,0.7);">
                         - RESTAURACIÓN -
                     </span>
                 </h1>
                 
-                <div style="max-width: 900px; margin: 150px auto 0; padding: 18px; background: rgba(0,0,0,0.4); border-radius: 12px; backdrop-filter: blur(5px);">
+                <div style="max-width: 900px; margin: 200px auto 0; padding: 18px; background: rgba(0,0,0,0.4); border-radius: 12px; backdrop-filter: blur(5px);">
                     <p style="font-size: 1.2rem; color: white; text-shadow: 1px 1px 2px rgba(0,0,0,0.8); line-height: 1.6; margin: 0;">
                         Somos una comunidad apasionada por la presencia de Dios.
                     </p>
@@ -930,7 +879,6 @@ if st.session_state.page == 'Inicio':
     
     st.markdown("<br><br>", unsafe_allow_html=True)
     
-       # 6. PRÓXIMA ACTIVIDAD - SOLO CULTOS (actualizado)
     st.markdown("""
             <div style="text-align:center; padding: 20px 0 40px 0;">
                 <h1 style='font-size:3.5rem; color:#1E3A8A; margin-bottom: 10px; font-family: "Playfair Display";'>Próxima Actividad</h1>
@@ -944,7 +892,6 @@ if st.session_state.page == 'Inicio':
         hours = next_service['time_until'].seconds // 3600
         minutes = (next_service['time_until'].seconds % 3600) // 60
         
-        # Formatear fecha en español
         dias_semana_es = {
             'Monday': 'Lunes', 'Tuesday': 'Martes', 'Wednesday': 'Miércoles',
             'Thursday': 'Jueves', 'Friday': 'Viernes', 'Saturday': 'Sábado',
@@ -1047,7 +994,7 @@ if st.session_state.page == 'Inicio':
     
     col_btn1, col_btn2, col_btn3 = st.columns([1, 2, 1])
     with col_btn2:
-        if st.button("PONTE AL TANTO CON LOS ANUNCIOS", use_container_width=True, type="primary"):
+        if st.button(" PONTE AL TANTO CON LOS ANUNCIOS", use_container_width=True, type="primary"):
             st.session_state.page = 'Anuncios'
             st.rerun()
 
