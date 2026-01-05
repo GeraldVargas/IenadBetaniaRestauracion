@@ -8,6 +8,47 @@ import streamlit.components.v1 as components
 import json
 import os
 import urllib.parse
+hide_streamlit_style = """
+<style>
+.stAppDeployButton {
+    display: none !important;
+}
+
+#MainMenu {
+    visibility: hidden !important;
+}
+
+footer {
+    visibility: hidden !important;
+}
+
+.deployButton {
+    display: none !important;
+}
+
+.stApp > header {
+    display: none !important;
+}
+
+.css-1v0mbdj {
+    display: none !important;
+}
+
+.stApp {
+    margin-top: -50px !important;
+}
+
+[data-testid="stAppViewContainer"] > div:first-child {
+    display: none !important;
+}
+
+.css-1lcbmhc {
+    display: none !important;
+}
+</style>
+"""
+
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 def scroll_to_top():
     """móvil y desktop"""
     scroll_js = """
