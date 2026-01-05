@@ -1,9 +1,28 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-BO">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IENAD BETANIA RESTAURACIÓN</title>
+    
+    <title>Ienad betania restauración Cochabamba-Bolivia</title>
+    
+    <meta name="description" content="IENAD Restauración - Iglesia Evangélica Nazarena en Cochabamba, Bolivia. Cultos los sábados 6:30 PM y domingos 10:30 AM. Comunidad cristiana de fe, restauración espiritual y palabra de Dios.">
+    
+    <meta name="keywords" content="iglesia cochabamba, culto evangélico, restauración espiritual, IENAD Betania, iglesia nazarena, cristianos bolivia, iglesia restauración, fe cristiana, culto sabático, palabra de Dios, comunidad cristiana">
+    
+    <meta property="og:title" content="IENAD RESTAURACIÓN - Iglesia en Cochabamba">
+    <meta property="og:description" content="Comunidad cristiana apasionada por la presencia de Dios en Cochabamba, Bolivia. Cultos los sábados 6:30 PM y domingos 10:30 AM.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/GeraldVargas/IenadBetaniaRestauracion/main/LogoIglesia.jpeg">
+    <meta property="og:url" content="https://geraldvargas.github.io/IenadBetaniaRestauracion/">
+    <meta property="og:type" content="website">
+    
+    <meta name="author" content="IENAD Restauración">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://geraldvargas.github.io/IenadBetaniaRestauracion/">
+    
+    <link rel="icon" href="https://raw.githubusercontent.com/GeraldVargas/IenadBetaniaRestauracion/main/LogoIglesia.jpeg" type="image/jpeg">
+    
     <style>
         * {
             margin: 0;
@@ -331,16 +350,46 @@
     </style>
     
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Church",
+        "name": "IENAD RESTAURACIÓN",
+        "alternateName": "IENAD Betania Restauración",
+        "description": "Iglesia Evangélica Nazarena en Cochabamba, Bolivia. Comunidad cristiana de fe y restauración espiritual.",
+        "url": "https://geraldvargas.github.io/IenadBetaniaRestauracion/",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Calle Fortín Vanguardia #740",
+            "addressLocality": "Cochabamba",
+            "addressCountry": "Bolivia"
+        },
+        "openingHours": [
+            "Sa 18:30-20:00",
+            "Su 10:30-12:00"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+591-67435065",
+            "contactType": "Pastoral Counseling"
+        }
+    }
+    </script>
 </head>
-<body>
+<body itemscope itemtype="https://schema.org/Church">
     <header>
         <div class="container">
             <div class="logo-container">
-                <img src="https://raw.githubusercontent.com/GeraldVargas/IenadBetaniaRestauracion/refs/heads/main/LogoIglesia.jpeg" alt="Logo IENAD Restauración" class="logo-img"> 
+                <img src="https://raw.githubusercontent.com/GeraldVargas/IenadBetaniaRestauracion/main/LogoIglesia.jpeg" 
+                     alt="Logo IENAD Restauración - Iglesia Evangélica en Cochabamba" 
+                     class="logo-img"
+                     itemprop="logo">
             </div>
-            <h1>IENAD BETANIA RESTAURACIÓN</h1>
-            <p class="subtitle">Una comunidad apasionada por la presencia de Dios</p>
+            <h1 itemprop="name">IENAD RESTAURACIÓN</h1>
+            <p class="subtitle" itemprop="description">Una comunidad apasionada por la presencia de Dios</p>
             <a href="https://ienadbetaniarestauracion.streamlit.app" target="_blank" class="cta-button">Visita nuestra App</a>
         </div>
     </header>
@@ -353,23 +402,23 @@
             </p>
             
             <div class="contact-grid">
-                <div class="contact-card">
+                <div class="contact-card" itemprop="contactPoint" itemscope itemtype="https://schema.org/ContactPoint">
                     <div class="contact-icon">
                         <i class="fas fa-user-circle"></i>
                     </div>
-                    <h3 class="contact-name">Pastora Paula</h3>
-                    <p class="contact-phone">+591 67435065</p>
+                    <h3 class="contact-name" itemprop="name">Pastora Paula</h3>
+                    <p class="contact-phone" itemprop="telephone">+591 67435065</p>
                     <a href="https://wa.me/59167435065" target="_blank" class="whatsapp-button">
                         <i class="fab fa-whatsapp"></i> WhatsApp Directo
                     </a>
                 </div>
                 
-                <div class="contact-card">
+                <div class="contact-card" itemprop="contactPoint" itemscope itemtype="https://schema.org/ContactPoint">
                     <div class="contact-icon">
                         <i class="fas fa-user-circle"></i>
                     </div>
-                    <h3 class="contact-name">Pastor Boris</h3>
-                    <p class="contact-phone">+591 77462108</p>
+                    <h3 class="contact-name" itemprop="name">Pastor Boris</h3>
+                    <p class="contact-phone" itemprop="telephone">+591 77462108</p>
                     <a href="https://wa.me/59177462108" target="_blank" class="whatsapp-button">
                         <i class="fab fa-whatsapp"></i> WhatsApp Directo
                     </a>
@@ -404,11 +453,16 @@
     
     <footer>
         <div class="container">
-            <img src="https://raw.githubusercontent.com/GeraldVargas/IenadBetaniaRestauracion/refs/heads/main/LogoIglesia.jpeg" alt="Logo IENAD Restauración" class="footer-logo-img">
+            <img src="https://raw.githubusercontent.com/GeraldVargas/IenadBetaniaRestauracion/main/LogoIglesia.jpeg" 
+                 alt="Logo IENAD Restauración" 
+                 class="footer-logo-img">
             <h3 style="color: white; margin-bottom: 10px; font-family: 'Playfair Display';">IENAD BETANIA - RESTAURACIÓN</h3>
-            <p class="footer-text">
-                Calle Fortín Vanguardia #740, Cochabamba - Bolivia<br>
-                Cultos: Sábado 6:30 PM | Domingo 10:30 AM
+            <p class="footer-text" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                <span itemprop="streetAddress">Calle Fortín Vanguardia #740</span>, 
+                <span itemprop="addressLocality">Cochabamba</span> - 
+                <span itemprop="addressCountry">Bolivia</span><br>
+                Cultos: <span itemprop="openingHours" content="Sa 18:30-20:00">Sábado 6:30 PM</span> | 
+                <span itemprop="openingHours" content="Su 10:30-12:00">Domingo 10:30 AM</span>
             </p>
             <p class="copyright">
                 © 2025 Iglesia Restauración. Desarrollado para la gloria de Dios.
