@@ -1,134 +1,373 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>IENAD BETANIA - RESTAURACIÓN Cochabamba</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IENAD RESTAURACIÓN</title>
     <style>
-        /* Todos tus estilos CSS aquí */
-    </style>
-</head>
-<body>
-    <!-- 1. HERO SECTION CON SLIDESHOW -->
-    <div class="hero-slideshow">
-        <img src="f1.jpeg" class="slide active">
-        <img src="f3.jpeg" class="slide">
-        <img src="f5.jpeg" class="slide">
-    </div>
-
-    <!-- 2. VIDEOS DE YOUTUBE -->
-    <div class="video-section">
-        <h2>📺 Nuestros Videos</h2>
-        <div class="video-grid">
-            <!-- Video 1 -->
-            <iframe src="https://www.youtube.com/embed/Btp8NR7CVPg"></iframe>
-            <!-- Video 2 -->
-            <iframe src="https://www.youtube.com/embed/56rP9fAy7Wo"></iframe>
-            <!-- Video 3 -->
-            <iframe src="https://www.youtube.com/embed/otro-video"></iframe>
-        </div>
-    </div>
-
-    <!-- 3. GALERÍA DE FOTOS -->
-    <div class="gallery">
-        <h2>📸 Nuestra Comunidad</h2>
-        <div class="photo-grid">
-            <img src="f6.jpeg" alt="Actividad 1">
-            <img src="f11.jpeg" alt="Actividad 2">
-            <img src="f10.jpeg" alt="Actividad 3">
-            <img src="f7.jpeg" alt="Actividad 4">
-        </div>
-    </div>
-
-    <!-- 4. HORARIOS DINÁMICOS (con JavaScript) -->
-    <div class="schedule">
-        <h2>📅 Próximo Culto</h2>
-        <div id="next-service">
-            Calculando...
-        </div>
-        <script>
-            // JavaScript para calcular próximo culto
-            function calculateNextService() {
-                const now = new Date();
-                const day = now.getDay(); // 0=Domingo, 6=Sábado
-                const hour = now.getHours();
-                
-                if (day === 5) { // Sábado
-                    return "Hoy: Culto de Restauración 6:30 PM";
-                } else if (day === 6) { // Domingo
-                    return "Hoy: Culto Dominical 10:30 AM";
-                } else {
-                    // Calcular días hasta sábado
-                    const daysUntilSaturday = (5 - day + 7) % 7;
-                    return `Próximo: Sábado en ${daysUntilSaturday} días`;
-                }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        :root {
+            --primary: #1E3A8A;
+            --secondary: #D4AF37;
+            --dark: #071840;
+            --light: #ffffff;
+        }
+        
+        body {
+            background-color: #f8fafc;
+            color: #334155;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--dark) 0%, #1e293b 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            border-bottom: 5px solid var(--secondary);
+        }
+        
+        .logo-container {
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            max-width: 150px;
+            height: auto;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--dark);
+            padding: 18px 45px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            border: 2px solid var(--secondary);
+            margin-top: 20px;
+        }
+        
+        .cta-button:hover {
+            background: transparent;
+            color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: var(--primary);
+            margin-bottom: 50px;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .contact-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-top: 5px solid var(--primary);
+            transition: transform 0.3s ease;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .contact-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .contact-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        
+        .contact-phone {
+            font-size: 1.3rem;
+            color: #64748b;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+        
+        .whatsapp-button {
+            display: inline-block;
+            background: #25D366;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+        }
+        
+        .whatsapp-button:hover {
+            background: #128C7E;
+            transform: scale(1.05);
+        }
+        
+        .app-section {
+            background: linear-gradient(135deg, var(--dark) 0%, #0f2461 100%);
+            color: white;
+            padding: 80px 0;
+            border-radius: 30px;
+            margin: 40px auto;
+            text-align: center;
+        }
+        
+        .app-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .app-description {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            color: #cbd5e1;
+        }
+        
+        .app-button {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--dark);
+            padding: 20px 50px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+            border: 2px solid var(--secondary);
+        }
+        
+        .app-button:hover {
+            background: transparent;
+            color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+            text-align: center;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        
+        .footer-logo {
+            max-width: 120px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-text {
+            color: #94a3b8;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .copyright {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
             }
             
-            document.getElementById('next-service').textContent = calculateNextService();
-        </script>
-    </div>
-
-    <!-- 5. FORMULARIO DE ORACIÓN (con Formspree gratis) -->
-    <div class="prayer-form">
-        <h2>🙏 Petición de Oración</h2>
-        <form action="https://formspree.io/f/tu-email" method="POST">
-            <input type="text" name="nombre" placeholder="Tu nombre" required>
-            <input type="tel" name="telefono" placeholder="WhatsApp">
-            <textarea name="peticion" placeholder="Tu petición..." required></textarea>
-            <button type="submit">Enviar Petición</button>
-        </form>
-    </div>
-
-    <!-- 6. MAPA INTERACTIVO -->
-    <div class="map">
-        <h2>📍 Ubicación</h2>
-        <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1ddato!2d-66.165321!3d-17.413137!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDI0JzQ3LjMiUyA2NsKwMDknNTQuMiJX!5e0!3m2!1ses!2sbo!4v1234567890"
-            width="100%" 
-            height="400" 
-            style="border:0;" 
-            allowfullscreen>
-        </iframe>
-    </div>
-
-    <!-- 7. CONTADOR EN TIEMPO REAL -->
-    <div class="counter">
-        <h2>⏳ Tiempo hasta próximo culto</h2>
-        <div id="countdown">
-            <span id="days">0</span> días
-            <span id="hours">0</span> horas  
-            <span id="minutes">0</span> minutos
-        </div>
-        <script>
-            // JavaScript para contador en tiempo real
-            function updateCountdown() {
-                // Cálculo en tiempo real
-                const now = new Date();
-                const nextSaturday = new Date();
-                // ... lógica de cálculo
-                
-                document.getElementById('days').textContent = days;
-                document.getElementById('hours').textContent = hours;
-                document.getElementById('minutes').textContent = minutes;
+            .subtitle {
+                font-size: 1.2rem;
             }
-            setInterval(updateCountdown, 60000); // Actualizar cada minuto
-        </script>
-    </div>
-
-    <!-- 8. BOTONES DE WHATSAPP DIRECTOS -->
-    <div class="whatsapp-buttons">
-        <a href="https://wa.me/59167435065?text=Hola%20Pastora%20Paula">
-            💬 WhatsApp Pastora Paula
-        </a>
-        <a href="https://wa.me/59177462108?text=Hola%20Pastor%20Boris">
-            💬 WhatsApp Pastor Boris
-        </a>
-    </div>
-
-    <!-- 9. ENLACES A REDES SOCIALES -->
-    <div class="social-links">
-        <a href="https://www.youtube.com/@IENADRestauracion">YouTube</a>
-        <a href="https://www.tiktok.com/@lglesia_restauracion">TikTok</a>
-        <a href="https://www.instagram.com/iglesia.restauracion.one">Instagram</a>
-        <a href="https://www.facebook.com/profile.php?id=61585513010853">Facebook</a>
-    </div>
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .app-title {
+                font-size: 2rem;
+            }
+            
+            .app-description {
+                font-size: 1.1rem;
+                padding: 0 20px;
+            }
+            
+            .cta-button, .app-button {
+                padding: 15px 30px;
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .section {
+                padding: 50px 0;
+            }
+            
+            .contact-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <img src="LogoIglesia.jpeg" alt="Logo IENAD Restauración" class="logo">
+            </div>
+            <h1>IENAD RESTAURACIÓN</h1>
+            <p class="subtitle">Una comunidad apasionada por la presencia de Dios</p>
+            <a href="#app" class="cta-button">Visita nuestra App</a>
+        </div>
+    </header>
+    
+    <section class="section" id="contactos">
+        <div class="container">
+            <h2 class="section-title">Contactos Directos</h2>
+            <p style="text-align: center; color: #64748b; font-size: 1.2rem; max-width: 800px; margin: 0 auto 40px;">
+                Estamos aquí para servirte. No dudes en contactarnos para cualquier necesidad espiritual.
+            </p>
+            
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <h3 class="contact-name">Pastora Paula</h3>
+                    <p class="contact-phone">+591 67435065</p>
+                    <a href="https://wa.me/59167435065" target="_blank" class="whatsapp-button">
+                        <i class="fab fa-whatsapp"></i> WhatsApp Directo
+                    </a>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <h3 class="contact-name">Pastor Boris</h3>
+                    <p class="contact-phone">+591 77462108</p>
+                    <a href="https://wa.me/59177462108" target="_blank" class="whatsapp-button">
+                        <i class="fab fa-whatsapp"></i> WhatsApp Directo
+                    </a>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="contact-name">Grupo de la Iglesia</h3>
+                    <p class="contact-phone">Comunidad de WhatsApp</p>
+                    <a href="https://chat.whatsapp.com/KR6Av3mLAIW1JaSuZrOWvn" target="_blank" class="whatsapp-button">
+                        <i class="fab fa-whatsapp"></i> Unirse al Grupo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="app-section" id="app">
+        <div class="container">
+            <h2 class="app-title">Visita nuestra App Completa</h2>
+            <p class="app-description">
+                Descubre horarios de culto, anuncios semanales, petición de oración, 
+                redes sociales, ubicación exacta y mucho más en nuestra aplicación web.
+            </p>
+            <a href="https://tu-app-en-streamlit.cloud" target="_blank" class="app-button">
+                <i class="fas fa-external-link-alt"></i> Ir a la App
+            </a>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <img src="LogoIglesia.jpeg" alt="Logo IENAD Restauración" class="footer-logo">
+            <h3 style="color: white; margin-bottom: 10px; font-family: 'Playfair Display';">IENAD BETANIA - RESTAURACIÓN</h3>
+            <p class="footer-text">
+                Calle Fortín Vanguardia #740, Cochabamba - Bolivia<br>
+                Cultos: Sábado 6:30 PM | Domingo 10:30 AM
+            </p>
+            <p class="copyright">
+                © 2025 Iglesia Restauración. Desarrollado para la gloria de Dios.
+            </p>
+        </div>
+    </footer>
 </body>
 </html>
