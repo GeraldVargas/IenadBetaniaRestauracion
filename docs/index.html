@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IENAD RESTAURACIÓN</title>
+    <title>IENAD BETANIA RESTAURACIÓN</title>
     <style>
         * {
             margin: 0;
@@ -43,10 +43,16 @@
             margin-bottom: 30px;
         }
         
-        .logo {
-            max-width: 150px;
-            height: auto;
+        .logo-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid var(--secondary);
+            object-fit: cover;
             margin: 0 auto;
+            display: block;
+            background: white;
+            padding: 5px;
         }
         
         h1 {
@@ -217,9 +223,16 @@
             border-top: 1px solid rgba(212, 175, 55, 0.3);
         }
         
-        .footer-logo {
-            max-width: 120px;
-            margin-bottom: 30px;
+        .footer-logo-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 2px solid var(--secondary);
+            object-fit: cover;
+            margin: 0 auto 30px;
+            display: block;
+            background: white;
+            padding: 3px;
         }
         
         .footer-text {
@@ -235,6 +248,21 @@
             border-top: 1px solid rgba(255,255,255,0.1);
             color: #64748b;
             font-size: 0.9rem;
+        }
+        
+        .logo-placeholder {
+            width: 150px;
+            height: 150px;
+            background: white;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid var(--secondary);
+            color: var(--secondary);
+            font-size: 4rem;
+            font-family: 'Playfair Display', serif;
         }
         
         @media (max-width: 768px) {
@@ -267,6 +295,15 @@
                 padding: 15px 30px;
                 font-size: 1.1rem;
             }
+            
+            .logo-img, .logo-placeholder {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .logo-placeholder {
+                font-size: 3rem;
+            }
         }
         
         @media (max-width: 480px) {
@@ -281,6 +318,15 @@
             .contact-card {
                 padding: 30px 20px;
             }
+            
+            .logo-img, .logo-placeholder {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .logo-placeholder {
+                font-size: 2.5rem;
+            }
         }
     </style>
     
@@ -291,11 +337,11 @@
     <header>
         <div class="container">
             <div class="logo-container">
-                <img src="LogoIglesia.jpeg" alt="Logo IENAD Restauración" class="logo">
+                <img src="https://raw.githubusercontent.com/GeraldVargas/IenadBetaniaRestauracion/refs/heads/main/LogoIglesia.jpeg" alt="Logo IENAD Restauración" class="logo-img"> 
             </div>
-            <h1>IENAD RESTAURACIÓN</h1>
+            <h1>IENAD BETANIA RESTAURACIÓN</h1>
             <p class="subtitle">Una comunidad apasionada por la presencia de Dios</p>
-            <a href="#app" class="cta-button">Visita nuestra App</a>
+            <a href="https://ienadbetaniarestauracion.streamlit.app" target="_blank" class="cta-button">Visita nuestra App</a>
         </div>
     </header>
     
@@ -350,7 +396,7 @@
                 Descubre horarios de culto, anuncios semanales, petición de oración, 
                 redes sociales, ubicación exacta y mucho más en nuestra aplicación web.
             </p>
-            <a href="https://tu-app-en-streamlit.cloud" target="_blank" class="app-button">
+            <a href="https://ienadbetaniarestauracion.streamlit.app" target="_blank" class="app-button">
                 <i class="fas fa-external-link-alt"></i> Ir a la App
             </a>
         </div>
@@ -358,7 +404,7 @@
     
     <footer>
         <div class="container">
-            <img src="LogoIglesia.jpeg" alt="Logo IENAD Restauración" class="footer-logo">
+            <img src="https://raw.githubusercontent.com/GeraldVargas/IenadBetaniaRestauracion/refs/heads/main/LogoIglesia.jpeg" alt="Logo IENAD Restauración" class="footer-logo-img">
             <h3 style="color: white; margin-bottom: 10px; font-family: 'Playfair Display';">IENAD BETANIA - RESTAURACIÓN</h3>
             <p class="footer-text">
                 Calle Fortín Vanguardia #740, Cochabamba - Bolivia<br>
